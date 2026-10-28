@@ -44,6 +44,16 @@ body {
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-brand-emerald-deep;
   }
 
+  /* Puncak lengkung bulat lebar untuk panel dan foto kartu; px tetap agar tidak lonjong di panel lebar */
+  .arch-top {
+    border-radius: 160px 160px 10px 10px;
+  }
+
+  /* Ceruk lengkung kecil untuk ikon */
+  .arch-top-sm {
+    border-radius: 9999px 9999px 4px 4px;
+  }
+
   /* Bingkai lengkung (mihrab) sederhana untuk foto potret */
   .frame-arch {
     border-radius: 999px 999px 16px 16px;
