@@ -1,84 +1,104 @@
+import type { ReactNode } from 'react';
 import { siteConfig } from '@/config/site';
+import SectionHeading from '@/components/ui/SectionHeading';
+import ButtonLink from '@/components/ui/ButtonLink';
+import GirihPattern from '@/components/ui/GirihPattern';
+
+const MAPS_LINK = 'https://maps.google.com/maps?q=SMP%20Inshafuddin%2C%20Banda%20Aceh';
+
+interface ContactItemProps {
+  title: string;
+  icon: ReactNode;
+  children: ReactNode;
+}
+
+function ContactItem({ title, icon, children }: ContactItemProps) {
+  return (
+    <div className="flex gap-4">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-control bg-surface-white/10 text-brand-gold-light">
+        {icon}
+      </span>
+      <div className="min-w-0">
+        <h3 className="text-sm font-semibold text-surface-white">{title}</h3>
+        <div className="mt-1 text-sm leading-relaxed text-ink-on-dark">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+const ICON_CLASS = 'h-5 w-5';
 
 export default function ContactSection() {
   return (
-    <section className="py-16 lg:py-20 bg-surface-white">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2">
-            Informasi & Lokasi
-          </h2>
-          <p className="text-2xl sm:text-3xl font-bold text-brand-emerald">
-            Kunjungi dan Hubungi Sekolah Kami
-          </p>
-          <p className="text-sm text-ink-muted mt-3">
-            Kami siap menyambut kehadiran Bapak/Ibu orang tua, calon siswa, serta masyarakat di kampus SMP Inshafuddin Banda Aceh.
-          </p>
-        </div>
+    <section aria-labelledby="contact-heading" className="bg-surface-white py-16 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          id="contact-heading"
+          eyebrow="Informasi & Lokasi"
+          title="Kunjungi dan hubungi sekolah kami"
+          description="Kami siap menyambut kehadiran Bapak/Ibu orang tua, calon siswa, serta masyarakat di SMP Inshafuddin Banda Aceh."
+          align="center"
+        />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Info Card */}
-          <div className="lg:col-span-5 bg-surface-ivory p-8 rounded-card border border-divider shadow-sm flex flex-col justify-between">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-base font-bold text-brand-emerald mb-2">
-                  Alamat Sekolah
-                </h3>
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {siteConfig.contact.address}
-                </p>
-                <p className="text-xs text-ink-muted/80 mt-1">
-                  (Kompleks Dayah Terpadu Inshafuddin)
-                </p>
-              </div>
+        <div className="grid grid-cols-1 overflow-hidden rounded-hero shadow-lift lg:grid-cols-12">
+          <div className="relative isolate flex flex-col bg-brand-emerald-deep p-8 sm:p-10 lg:col-span-5">
+            <GirihPattern className="text-brand-gold/[0.08]" />
+            <div className="relative space-y-7">
+              <ContactItem
+                title="Alamat Sekolah"
+                icon={
+                  <svg aria-hidden="true" className={ICON_CLASS} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.66 16.66L13.41 20.9a2 2 0 01-2.83 0l-4.24-4.24a8 8 0 1111.32 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                }
+              >
+                <p>{siteConfig.contact.address}</p>
+                <p className="mt-1 text-xs">(Kompleks Dayah Terpadu Inshafuddin)</p>
+              </ContactItem>
 
-              <div>
-                <h3 className="text-base font-bold text-brand-emerald mb-2">
-                  Jam Pelayanan Kantor
-                </h3>
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {siteConfig.contact.hours}
-                </p>
-                <p className="text-xs text-ink-muted/80 mt-1">
-                  Hari Minggu dan Libur Nasional Tutup
-                </p>
-              </div>
+              <ContactItem
+                title="Jam Pelayanan Kantor"
+                icon={
+                  <svg aria-hidden="true" className={ICON_CLASS} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                }
+              >
+                <p>{siteConfig.contact.hours}</p>
+                <p className="mt-1 text-xs">Hari Minggu dan libur nasional tutup</p>
+              </ContactItem>
 
-              <div>
-                <h3 className="text-base font-bold text-brand-emerald mb-2">
-                  Surel Resmi
-                </h3>
+              <ContactItem
+                title="Surel Resmi"
+                icon={
+                  <svg aria-hidden="true" className={ICON_CLASS} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                }
+              >
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="text-sm font-semibold text-brand-emerald hover:underline"
+                  className="focus-ring-dark break-all rounded font-semibold text-brand-gold-light underline decoration-brand-gold/50 underline-offset-4 hover:text-surface-white"
                 >
                   {siteConfig.contact.email}
                 </a>
-                <p className="text-xs text-ink-muted/80 mt-1">
-                  {siteConfig.contact.phoneDisplay}
-                </p>
-              </div>
+                <p className="mt-1 text-xs">{siteConfig.contact.phoneDisplay}</p>
+              </ContactItem>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-divider">
-              <a
-                href="https://maps.google.com/maps?q=SMP%20Inshafuddin%2C%20Banda%20Aceh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center px-4 py-3 rounded-xl bg-brand-emerald text-surface-white font-semibold text-xs hover:bg-brand-emerald-hover focus:outline-none focus:ring-2 focus:ring-brand-emerald transition-colors min-h-[44px]"
-              >
-                Buka Peta di Google Maps &rarr;
-              </a>
+            <div className="relative mt-10 lg:mt-auto lg:pt-10">
+              <ButtonLink href={MAPS_LINK} variant="gold" external className="w-full">
+                Buka di Google Maps
+              </ButtonLink>
             </div>
           </div>
 
-          {/* Map Embed */}
-          <div className="lg:col-span-7 rounded-card overflow-hidden border border-divider shadow-sm min-h-[350px] relative bg-surface-sage">
+          <div className="relative min-h-[360px] bg-surface-sage lg:col-span-7">
             <iframe
               src={siteConfig.contact.mapsUrl}
-              title="Peta Lokasi SMP Inshafuddin Banda Aceh"
-              aria-label="Peta Lokasi SMP Inshafuddin Banda Aceh"
-              className="w-full h-full min-h-[350px] border-0"
+              title="Peta lokasi SMP Inshafuddin Banda Aceh"
+              className="absolute inset-0 h-full w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

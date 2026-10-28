@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/wordpress/api';
 import { extractFirstImage, stripHtml, formatIndonesianDate } from '@/lib/wordpress/extract';
 import { siteConfig } from '@/config/site';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import StarMark from '@/components/ui/StarMark';
 
 export const revalidate = 900; // 15 menit
 
@@ -90,90 +92,66 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const mainImage = extractFirstImage(post.content.rendered);
 
   return (
-    <div className="py-12 lg:py-16">
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        {/* Breadcrumb Navigation */}
-        <nav aria-label="Breadcrumb" className="text-xs text-ink-muted">
-          <ol className="flex items-center gap-2 flex-wrap">
-            <li>
-              <Link href="/" className="hover:text-brand-emerald">
-                Beranda
-              </Link>
-            </li>
-            <li>/</li>
-            <li>
-              <Link href="/berita/" className="hover:text-brand-emerald">
-                Berita
-              </Link>
-            </li>
-            <li>/</li>
-            <li className="text-brand-emerald font-semibold truncate max-w-[200px] sm:max-w-none">
-              {cleanTitle}
-            </li>
-          </ol>
-        </nav>
+    <article className="pb-16 lg:pb-24">
+      <header className="border-b border-divider bg-surface-sand">
+        <div className="mx-auto max-w-3xl px-4 pb-10 pt-8 sm:px-6 lg:pb-14 lg:pt-10">
+          <Breadcrumb items={[{ label: 'Berita', href: '/berita/' }, { label: cleanTitle }]} />
 
-        {/* Article Header */}
-        <header className="space-y-4 border-b border-divider pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sage text-brand-emerald text-xs font-semibold">
-            <span>Warta Sekolah</span>
-          </div>
+          <p className="mt-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
+            <StarMark className="h-3 w-3 text-brand-gold" />
+            Warta Sekolah
+          </p>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-emerald tracking-tight leading-tight">
+          <h1 className="mt-4 font-display text-3xl font-semibold leading-[1.15] tracking-tight text-brand-emerald sm:text-4xl lg:text-5xl">
             {cleanTitle}
           </h1>
 
-          <div className="flex items-center gap-4 text-xs text-ink-muted pt-2">
-            <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-muted">
+            <span className="inline-flex items-center gap-2">
+              <svg aria-hidden="true" className="h-4 w-4 text-brand-gold-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <time dateTime={post.date}>{postDate}</time>
-            </div>
-            <span>•</span>
-            <div className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <svg aria-hidden="true" className="h-4 w-4 text-brand-gold-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
               <span>{authorName}</span>
-            </div>
+            </span>
           </div>
-        </header>
+        </div>
+      </header>
 
-        {/* Main Hero Image if found in article content */}
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         {mainImage && (
-          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-sm bg-surface-sage border border-divider">
+          <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-hero bg-surface-sage shadow-lift">
             <Image
               src={mainImage}
               alt={cleanTitle}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover"
             />
           </div>
         )}
 
-        {/* Article Body Content */}
         <div
-          className="content-prose max-w-none text-ink-primary text-base sm:text-lg leading-relaxed pt-2"
+          className="content-prose mt-10 text-base sm:text-lg"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
 
-        {/* Article Footer & Navigation Back */}
-        <footer className="pt-8 mt-12 border-t border-divider flex flex-col sm:flex-row items-center justify-between gap-4">
+        <footer className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-divider pt-8 sm:flex-row sm:items-center">
           <Link
             href="/berita/"
-            className="inline-flex items-center text-sm font-semibold text-brand-emerald hover:text-brand-emerald-hover focus:outline-none focus:ring-1 focus:ring-brand-emerald min-h-[44px]"
+            className="focus-ring inline-flex min-h-[44px] items-center gap-2 rounded-control text-sm font-semibold text-brand-emerald hover:text-brand-emerald-hover"
           >
-            &larr; Kembali ke Arsip Berita
+            &larr; Kembali ke arsip berita
           </Link>
-
-          <div className="text-xs text-ink-muted">
-            Dipublikasikan secara resmi oleh SMP Inshafuddin Banda Aceh
-          </div>
+          <p className="text-xs text-ink-muted">Dipublikasikan oleh SMP Inshafuddin Banda Aceh</p>
         </footer>
-      </article>
-    </div>
+      </div>
+    </article>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
+import PageHero from '@/components/ui/PageHero';
+import MediaCard from '@/components/ui/MediaCard';
+import SectionHeading from '@/components/ui/SectionHeading';
 
 export const revalidate = 3600;
 
@@ -59,98 +61,56 @@ export default function EkstrakurikulerPage() {
   ];
 
   return (
-    <div className="py-12 lg:py-16">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Breadcrumb & Header */}
-        <div className="border-b border-divider pb-8">
-          <nav aria-label="Breadcrumb" className="text-xs text-ink-muted mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-brand-emerald">
-                  Beranda
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-brand-emerald font-semibold">Ekstrakurikuler</li>
-            </ol>
-          </nav>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-emerald tracking-tight">
-            Ekstrakurikuler & Kehidupan Siswa
-          </h1>
-          <p className="text-base text-ink-muted mt-2 max-w-3xl">
-            Pengembangan diri di luar jam kelas untuk menumbuhkan kepemimpinan, bakat seni, ketangkasan fisik, dan jiwa sosial santri/siswa.
-          </p>
-        </div>
+    <>
+      <PageHero
+        eyebrow="Kehidupan Siswa"
+        title="Ekstrakurikuler & Kehidupan Siswa"
+        description="Pengembangan diri di luar jam kelas untuk menumbuhkan kepemimpinan, bakat seni, ketangkasan fisik, dan jiwa sosial santri/siswa."
+        breadcrumb={[{ label: 'Ekstrakurikuler' }]}
+      />
 
-        {/* 3 Ekstrakurikuler Utama dengan Ilustrasi Kartun Sample */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {activities.map((a) => (
-            <div
-              key={a.title}
-              className="bg-surface-white rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-lg flex flex-col justify-between overflow-hidden group"
-            >
-              <div>
-                {/* Ilustrasi Kartun Sample */}
-                <div className="relative aspect-[16/10] w-full bg-surface-sage overflow-hidden border-b border-divider">
-                  <Image
-                    src={a.image}
-                    alt={a.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 380px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="p-6 sm:p-8">
-                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
-                    {a.tag}
-                  </span>
-                  <h2 className="text-xl font-bold text-brand-emerald mb-3">
-                    {a.title}
-                  </h2>
-                  <p className="text-sm text-ink-muted leading-relaxed">
-                    {a.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
+      <section aria-label="Kegiatan ekstrakurikuler" className="bg-surface-ivory py-16 lg:py-24">
+        <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-3 lg:gap-8 lg:px-8">
+          {activities.map((activity) => (
+            <MediaCard
+              key={activity.title}
+              title={activity.title}
+              description={activity.desc}
+              tag={activity.tag}
+              image={activity.image}
+              imageAlt={activity.alt}
+              imageSizes="(max-width: 768px) 100vw, 400px"
+              headingLevel="h2"
+            />
           ))}
         </div>
+      </section>
 
-        {/* Dokumentasi Kegiatan Asli dari Media Library */}
-        <section className="space-y-6">
-          <div>
-            <h2 className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2">
-              Dokumentasi Resmi
-            </h2>
-            <p className="text-2xl font-bold text-brand-emerald">
-              Galeri Dokumentasi Kegiatan Siswa
-            </p>
-          </div>
+      {/* Dokumentasi kegiatan dari Media Library WordPress */}
+      <section aria-labelledby="galeri-heading" className="bg-surface-white py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="galeri-heading" eyebrow="Dokumentasi Resmi" title="Galeri dokumentasi kegiatan siswa" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {galleryImages.map((img, idx) => (
-              <figure
-                key={idx}
-                className="bg-surface-white rounded-card border border-divider overflow-hidden shadow-sm flex flex-col justify-between"
-              >
-                <div className="relative aspect-[4/3] w-full bg-surface-sage">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {galleryImages.map((img) => (
+              <figure key={img.url} className="group">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-card bg-surface-sage shadow-card">
                   <Image
                     src={img.url}
                     alt={img.caption}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                    className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
                   />
                 </div>
-                <figcaption className="p-3 text-xs text-ink-muted text-center font-medium">
+                <figcaption className="mt-3 border-l-2 border-brand-gold pl-3 text-sm font-medium leading-snug text-ink-primary">
                   {img.caption}
                 </figcaption>
               </figure>
             ))}
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   );
 }

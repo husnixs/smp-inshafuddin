@@ -1,43 +1,54 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
+
+function FooterHeading({ children }: { children: string }) {
+  return (
+    <h2 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
+      <StarMark className="h-2.5 w-2.5 text-brand-gold" />
+      {children}
+    </h2>
+  );
+}
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-emerald text-surface-white border-t-2 border-brand-gold/40">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Column 1: School Identity */}
-          <div className="space-y-4">
-            <div className="bg-surface-white p-3 rounded-lg inline-block w-48 shadow-sm">
-              <div className="relative w-full h-12">
+    <footer className="relative isolate overflow-hidden bg-brand-emerald-deep text-ink-on-dark">
+      <GirihPattern className="text-brand-gold/[0.07]" />
+      <div aria-hidden="true" className="h-1 bg-gradient-to-r from-brand-gold/0 via-brand-gold to-brand-gold/0" />
+
+      <div className="relative mx-auto max-w-content px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
+          <div className="space-y-5 lg:col-span-5">
+            <div className="inline-block rounded-control bg-surface-white p-3 shadow-card">
+              <span className="relative block h-11 w-44">
                 <Image
                   src={siteConfig.logo.url}
                   alt={siteConfig.logo.alt}
                   fill
-                  sizes="192px"
+                  sizes="176px"
                   className="object-contain object-left"
                 />
-              </div>
+              </span>
             </div>
-            <p className="text-sm text-surface-sage/90 leading-relaxed">
-              SMP Inshafuddin merupakan sekolah di bawah naungan Yayasan Pembina Inshafuddin di lingkungan Dayah Terpadu Inshafuddin Banda Aceh, memadukan kurikulum nasional dan pendidikan dayah sejak 1974.
+            <p className="max-w-md text-sm leading-relaxed">
+              SMP Inshafuddin berada di bawah naungan Yayasan Pembina Inshafuddin, di lingkungan Dayah Terpadu
+              Inshafuddin Banda Aceh, memadukan kurikulum nasional dan pendidikan dayah sejak 1974.
             </p>
           </div>
 
-          {/* Column 2: Navigation Links */}
-          <div>
-            <h3 className="text-base font-semibold text-brand-gold mb-4 tracking-wide uppercase">
-              Tautan Navigasi
-            </h3>
-            <ul className="space-y-2 text-sm">
+          <div className="lg:col-span-2">
+            <FooterHeading>Jelajahi</FooterHeading>
+            <ul className="space-y-1 text-sm">
               {siteConfig.navItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-surface-sage/80 hover:text-surface-white hover:underline transition-colors focus:outline-none focus:ring-1 focus:ring-brand-gold py-1 inline-block"
+                    className="focus-ring-dark inline-flex min-h-[36px] items-center rounded transition-colors hover:text-surface-white"
                   >
                     {item.label}
                   </Link>
@@ -46,70 +57,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Jam Kerja & Layanan */}
-          <div>
-            <h3 className="text-base font-semibold text-brand-gold mb-4 tracking-wide uppercase">
-              Jam Layanan Kantor
-            </h3>
-            <div className="space-y-2 text-sm text-surface-sage/90">
-              <p className="font-medium text-surface-white">
-                {siteConfig.contact.hours}
-              </p>
-              <p className="text-xs text-surface-sage/75">
-                Pelayanan administrasi sekolah dan informasi pendidikan bagi orang tua dan calon siswa.
-              </p>
-              <div className="pt-2">
-                <span className="inline-block px-2.5 py-1 rounded bg-brand-emerald-hover text-xs text-brand-gold border border-brand-gold/30">
-                  Pendidikan Nasional & Dayah
-                </span>
-              </div>
-            </div>
+          <div className="lg:col-span-2">
+            <FooterHeading>Jam Layanan</FooterHeading>
+            <p className="text-sm font-medium text-surface-white">{siteConfig.contact.hours}</p>
+            <p className="mt-2 text-xs leading-relaxed">
+              Pelayanan administrasi sekolah dan informasi pendidikan bagi orang tua dan calon siswa.
+            </p>
           </div>
 
-          {/* Column 4: Kontak Resmi */}
-          <div>
-            <h3 className="text-base font-semibold text-brand-gold mb-4 tracking-wide uppercase">
-              Kontak Resmi
-            </h3>
-            <div className="space-y-3 text-sm text-surface-sage/90">
-              <p className="leading-relaxed">
-                <span className="block font-semibold text-surface-white">Alamat:</span>
-                {siteConfig.contact.address}
-              </p>
+          <div className="lg:col-span-3">
+            <FooterHeading>Kontak Resmi</FooterHeading>
+            <address className="space-y-4 text-sm not-italic leading-relaxed">
+              <p>{siteConfig.contact.address}</p>
               <p>
-                <span className="block font-semibold text-surface-white">Email:</span>
                 <a
                   href={`mailto:${siteConfig.contact.email}`}
-                  className="text-brand-gold hover:underline focus:outline-none focus:ring-1 focus:ring-brand-gold"
+                  className="focus-ring-dark break-all rounded font-semibold text-brand-gold-light underline decoration-brand-gold/50 underline-offset-4 hover:text-surface-white"
                 >
                   {siteConfig.contact.email}
                 </a>
               </p>
-              <p className="text-xs text-surface-sage/70 pt-1">
-                {siteConfig.contact.phoneDisplay}
-              </p>
-            </div>
+              <p className="text-xs">{siteConfig.contact.phoneDisplay}</p>
+            </address>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-surface-sage/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-surface-sage/70">
-          <p>
-            &copy; {currentYear} SMP Inshafuddin Banda Aceh. Hak cipta dilindungi.
-          </p>
-          <div className="flex items-center gap-4">
-            <Link href="/tentang-kami/" className="hover:text-surface-white transition-colors">
-              Profil Sekolah
-            </Link>
-            <span>•</span>
-            <Link href="/akademik/" className="hover:text-surface-white transition-colors">
-              Kurikulum
-            </Link>
-            <span>•</span>
-            <Link href="/berita/" className="hover:text-surface-white transition-colors">
-              Kabar Terbaru
-            </Link>
-          </div>
+        <div className="mt-14 flex flex-col gap-3 border-t border-surface-white/10 pt-8 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {currentYear} SMP Inshafuddin Banda Aceh. Hak cipta dilindungi.</p>
+          <p className="text-brand-gold-light">Membina ilmu dan akhlak sejak 1974</p>
         </div>
       </div>
     </footer>
