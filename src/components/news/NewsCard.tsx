@@ -2,8 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { WPPost } from '@/types/wordpress';
 import { extractFirstImage, stripHtml, formatIndonesianDate, truncateText } from '@/lib/wordpress/extract';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import MihrabMark from '@/components/ui/MihrabMark';
 
 const EXCERPT_LENGTH = 120;
 
@@ -36,8 +35,7 @@ export default function NewsCard({ post, headingLevel: Heading = 'h3', imageSize
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-brand-emerald">
-            <GirihPattern className="text-brand-gold/20" tileSize={40} />
-            <StarMark className="relative h-8 w-8 text-brand-gold-light" />
+            <MihrabMark className="h-16 w-12 text-brand-gold-light/70" />
           </div>
         )}
       </div>
