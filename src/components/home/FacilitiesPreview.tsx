@@ -30,8 +30,6 @@ const FACILITIES = [
 ];
 
 export default function FacilitiesPreview() {
-  const [featured, ...others] = FACILITIES;
-
   return (
     <section aria-labelledby="facilities-heading" className="bg-surface-ivory py-16 lg:py-24">
       <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
@@ -42,19 +40,8 @@ export default function FacilitiesPreview() {
           action={<ArrowLink href="/fasilitas/">Lihat seluruh fasilitas</ArrowLink>}
         />
 
-        {/* Bento: satu kartu utama + dua kartu pendamping */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
-          <MediaCard
-            title={featured.title}
-            description={featured.description}
-            tag={featured.tag}
-            image={featured.image}
-            imageAlt={featured.alt}
-            imageSizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 680px"
-            aspectClass="aspect-[16/10] lg:aspect-auto lg:flex-1 lg:min-h-[320px]"
-            className="md:col-span-2 lg:col-span-3 lg:row-span-2"
-          />
-          {others.map((facility) => (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+          {FACILITIES.map((facility) => (
             <MediaCard
               key={facility.title}
               title={facility.title}
@@ -62,8 +49,7 @@ export default function FacilitiesPreview() {
               tag={facility.tag}
               image={facility.image}
               imageAlt={facility.alt}
-              imageSizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 440px"
-              className="lg:col-span-2"
+              imageSizes="(max-width: 768px) 100vw, 400px"
             />
           ))}
         </div>

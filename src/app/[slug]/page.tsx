@@ -8,7 +8,7 @@ import { buildArticleMetadata, getPostAuthorName, getPostTitle } from '@/lib/seo
 import { articleSchema, siteGraph } from '@/lib/seo/jsonld';
 import JsonLd from '@/components/seo/JsonLd';
 import Breadcrumb from '@/components/ui/Breadcrumb';
-import StarMark from '@/components/ui/StarMark';
+import ArchDivider from '@/components/ui/ArchDivider';
 
 export const revalidate = 900; // 15 menit
 
@@ -54,7 +54,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <Breadcrumb items={[{ label: 'Berita', href: '/berita/' }, { label: cleanTitle }]} />
 
           <p className="mt-10 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
-            <StarMark className="h-3 w-3 text-brand-gold" />
+            <ArchDivider className="h-3 w-10 text-brand-gold" />
             Warta Sekolah
           </p>
 

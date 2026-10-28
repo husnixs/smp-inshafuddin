@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import StarMark from './StarMark';
+import ArchDivider from './ArchDivider';
 
 type Tone = 'light' | 'dark';
 type HeadingLevel = 'h1' | 'h2';
@@ -47,7 +47,7 @@ export default function SectionHeading({
       <p
         className={`mb-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] ${styles.eyebrow}`}
       >
-        <StarMark className="h-3 w-3 text-brand-gold" />
+        <ArchDivider className="h-3 w-10 text-brand-gold" />
         {eyebrow}
       </p>
       <Heading

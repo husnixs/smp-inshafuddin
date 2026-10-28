@@ -2,12 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
 import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import ArcadeBand from '@/components/ui/ArcadeBand';
 
 function FooterHeading({ children }: { children: string }) {
   return (
-    <h2 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
-      <StarMark className="h-2.5 w-2.5 text-brand-gold" />
+    <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
       {children}
     </h2>
   );
@@ -19,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="relative isolate overflow-hidden bg-brand-emerald-deep text-ink-on-dark">
       <GirihPattern className="text-brand-gold/[0.07]" />
-      <div aria-hidden="true" className="h-1 bg-gradient-to-r from-brand-gold/0 via-brand-gold to-brand-gold/0" />
+      <ArcadeBand className="relative text-brand-gold/40" />
 
       <div className="relative mx-auto max-w-content px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">

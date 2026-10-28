@@ -43,7 +43,7 @@ const config: Config = {
       },
       borderRadius: {
         control: '12px',
-        card: '16px',
+        card: '10px',
         hero: '24px',
       },
       boxShadow: {

@@ -1,7 +1,5 @@
 import Image from 'next/image';
 import ButtonLink from '@/components/ui/ButtonLink';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
 
 interface HeroSectionProps {
   heroImageUrl?: string;
@@ -15,20 +13,17 @@ export default function HeroSection({ heroImageUrl }: HeroSectionProps) {
 
   return (
     <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-surface-ivory">
-      <GirihPattern className="text-brand-emerald/[0.05]" />
       <div
         aria-hidden="true"
         className="absolute inset-y-0 right-0 -z-0 hidden w-[42%] bg-brand-emerald-deep lg:block"
       />
-      <GirihPattern className="hidden text-brand-gold/[0.12] lg:block lg:[clip-path:inset(0_0_0_58%)]" />
 
       <div className="relative mx-auto max-w-content px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             {/* Nama sekolah menjadi bagian H1 agar entitas utama halaman jelas bagi mesin pencari & AI. */}
             <h1 id="hero-heading">
-              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-surface-white px-3.5 py-1.5 font-sans text-xs font-semibold text-brand-emerald shadow-card">
-                <StarMark className="h-3 w-3 text-brand-gold" />
+              <span className="mb-4 block font-sans text-sm font-semibold tracking-wide text-brand-gold-ink">
                 SMP Inshafuddin Banda Aceh
                 <span className="sr-only">:</span>
               </span>

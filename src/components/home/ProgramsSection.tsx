@@ -1,7 +1,6 @@
 import SectionHeading from '@/components/ui/SectionHeading';
 import ArrowLink from '@/components/ui/ArrowLink';
 import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
 
 interface Program {
   badge: string;
@@ -72,7 +71,7 @@ function ProgramPanel({ program }: { program: Program }) {
         <ul className={`mb-8 mt-6 space-y-3.5 text-sm sm:text-base ${isDark ? 'text-surface-white' : 'text-ink-primary'}`}>
           {program.points.map((point) => (
             <li key={point} className="flex items-start gap-3">
-              <StarMark className="mt-1 h-3.5 w-3.5 shrink-0 text-brand-gold" />
+              <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
               <span className="leading-relaxed">{point}</span>
             </li>
           ))}

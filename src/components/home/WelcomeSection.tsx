@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import ButtonLink from '@/components/ui/ButtonLink';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import ArchDivider from '@/components/ui/ArchDivider';
+import MihrabFrame from '@/components/ui/MihrabFrame';
 
 const PRINCIPAL_PHOTO =
   'https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-22-at-20.54.08-682x1024.jpeg';
@@ -10,18 +10,13 @@ export default function WelcomeSection() {
   return (
     <section aria-labelledby="welcome-heading" className="bg-surface-white py-16 lg:py-24">
       <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
-        <div className="relative isolate overflow-hidden rounded-hero bg-gradient-to-br from-brand-emerald-soft via-brand-emerald to-brand-emerald-deep p-7 shadow-lift sm:p-10 lg:p-14">
-          <GirihPattern className="text-brand-gold/[0.1]" />
-          <div
-            aria-hidden="true"
-            className="absolute -right-24 -top-24 -z-0 h-80 w-80 rounded-full bg-brand-gold/10 blur-3xl"
-          />
+        <div className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-7 shadow-lift sm:p-10 lg:p-14">
 
           <div className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
             {/* Teks sambutan */}
             <div className="order-2 lg:order-1 lg:col-span-7">
               <p className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
-                <StarMark className="h-3 w-3 text-brand-gold" />
+                <ArchDivider className="h-3 w-10 text-brand-gold" />
                 Sambutan Kepala Sekolah
               </p>
 
@@ -67,11 +62,7 @@ export default function WelcomeSection() {
             {/* Foto kepala sekolah dalam bingkai lengkung */}
             <div className="order-1 flex justify-center lg:order-2 lg:col-span-5">
               <figure className="relative w-60 sm:w-72">
-                <div
-                  aria-hidden="true"
-                  className="frame-arch absolute -inset-3 border border-brand-gold/50"
-                />
-                <div className="frame-arch relative aspect-[3/4] w-full overflow-hidden bg-brand-emerald-deep shadow-lift">
+                <MihrabFrame outline outlineTone="dark" className="aspect-[3/4] w-full">
                   <Image
                     src={PRINCIPAL_PHOTO}
                     alt="Warnidah, S.Pd.I — Kepala SMP Inshafuddin Banda Aceh"
@@ -83,7 +74,7 @@ export default function WelcomeSection() {
                     aria-hidden="true"
                     className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-emerald-deep/80 to-transparent"
                   />
-                </div>
+                </MihrabFrame>
 
                 <figcaption className="relative z-10 mx-auto -mt-8 w-[92%] rounded-control border border-brand-gold-light/60 bg-brand-gold-light px-4 py-3 text-center shadow-lift">
                   <span className="block font-display text-lg font-semibold leading-tight text-brand-emerald-deep">
