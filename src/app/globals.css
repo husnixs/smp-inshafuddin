@@ -2,19 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-plus-jakarta-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
   color-scheme: light;
 }
 
 body {
-  color: #192B27;
-  background-color: #FAF9F6;
-  font-family: var(--font-plus-jakarta-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,31 +16,68 @@ body {
   html {
     scroll-behavior: auto;
   }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
-/* Custom Utility Classes */
+@layer components {
+  /* Permukaan kartu dasar */
+  .card-surface {
+    @apply rounded-card border border-divider bg-surface-white shadow-card;
+  }
+
+  .card-interactive {
+    @apply transition-[transform,box-shadow,border-color] duration-300 ease-out-expo hover:-translate-y-1 hover:border-brand-emerald/30 hover:shadow-lift;
+  }
+
+  /* Focus ring konsisten untuk elemen interaktif */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-surface-ivory;
+  }
+
+  .focus-ring-dark {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-brand-emerald-deep;
+  }
+
+  /* Bingkai lengkung (mihrab) sederhana untuk foto potret */
+  .frame-arch {
+    border-radius: 999px 999px 16px 16px;
+  }
+}
+
+/* Konten HTML dari WordPress */
 .content-prose {
-  color: #192B27;
-  line-height: 1.75;
+  @apply text-ink-primary;
+  line-height: 1.8;
 }
 
 .content-prose p {
   margin-bottom: 1.25rem;
 }
 
+.content-prose a {
+  @apply font-medium text-brand-emerald underline decoration-brand-gold underline-offset-4 hover:decoration-brand-emerald;
+}
+
 .content-prose h2 {
-  color: #103F35;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-top: 2rem;
+  @apply font-display text-brand-emerald;
+  font-size: 1.625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .content-prose h3 {
-  color: #103F35;
-  font-size: 1.25rem;
+  @apply font-display text-brand-emerald;
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
 
@@ -67,9 +97,17 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.content-prose li::marker {
+  @apply text-brand-gold;
+}
+
+.content-prose blockquote {
+  @apply my-6 rounded-r-control border-l-4 border-brand-gold bg-surface-sand px-5 py-4 italic text-ink-primary;
+}
+
 .content-prose figure {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
 }
 
 .content-prose img {
@@ -79,8 +117,19 @@ body {
 }
 
 .content-prose figcaption {
+  @apply text-ink-muted;
   font-size: 0.875rem;
-  color: #52615A;
   text-align: center;
   margin-top: 0.5rem;
+}
+
+.content-prose table {
+  @apply my-6 w-full border-collapse text-sm;
+  display: block;
+  overflow-x: auto;
+}
+
+.content-prose th,
+.content-prose td {
+  @apply border border-divider px-3 py-2 text-left;
 }

@@ -1,65 +1,99 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import ButtonLink from '@/components/ui/ButtonLink';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
+
+const PRINCIPAL_PHOTO =
+  'https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-22-at-20.54.08-682x1024.jpeg';
 
 export default function WelcomeSection() {
-  const principalPhoto = 'https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-22-at-20.54.08-682x1024.jpeg';
-
   return (
-    <section className="py-16 lg:py-20 bg-surface-white border-b border-divider">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-surface-sage/40 rounded-card p-8 sm:p-12 border border-divider">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Foto Kepala Sekolah */}
-            <div className="lg:col-span-4 flex flex-col items-center text-center">
-              <div className="relative w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden shadow-md border-4 border-surface-white bg-surface-white">
-                <Image
-                  src={principalPhoto}
-                  alt="Warnidah, S.Pd.I — Kepala SMP Inshafuddin Banda Aceh"
-                  fill
-                  sizes="(max-width: 640px) 192px, 224px"
-                  className="object-cover object-top"
-                />
-              </div>
-              <div className="mt-4">
-                <h3 className="text-base font-bold text-brand-emerald">
-                  Warnidah, S.Pd.I
-                </h3>
-                <p className="text-xs text-ink-muted">
-                  Kepala SMP Inshafuddin Banda Aceh
+    <section aria-labelledby="welcome-heading" className="bg-surface-white py-16 lg:py-24">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="relative isolate overflow-hidden rounded-hero bg-gradient-to-br from-brand-emerald-soft via-brand-emerald to-brand-emerald-deep p-7 shadow-lift sm:p-10 lg:p-14">
+          <GirihPattern className="text-brand-gold/[0.1]" />
+          <div
+            aria-hidden="true"
+            className="absolute -right-24 -top-24 -z-0 h-80 w-80 rounded-full bg-brand-gold/10 blur-3xl"
+          />
+
+          <div className="relative grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+            {/* Teks sambutan */}
+            <div className="order-2 lg:order-1 lg:col-span-7">
+              <p className="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
+                <StarMark className="h-3 w-3 text-brand-gold" />
+                Sambutan Kepala Sekolah
+              </p>
+
+              <h2
+                id="welcome-heading"
+                className="font-display text-3xl font-semibold leading-[1.1] tracking-tight text-surface-white sm:text-4xl lg:text-5xl"
+              >
+                Selamat datang di <span className="italic text-brand-gold-light">SMP Inshafuddin</span>
+              </h2>
+
+              <div className="mt-6 space-y-4 text-sm leading-relaxed text-ink-on-dark sm:text-base">
+                <p className="font-display text-lg italic text-brand-gold-light">
+                  Assalaamu’alaikum Warahmatullahi Wabarakatuh.
                 </p>
+                <p>
+                  Segala puji syukur kita panjatkan kepada Allah SWT, atas limpahan rahmat dan karunia-Nya sehingga
+                  website resmi SMP Inshafuddin Banda Aceh dapat hadir sebagai sarana informasi dan keterbukaan bagi
+                  masyarakat.
+                </p>
+                <p>
+                  Sebagai bagian integral dari Dayah Terpadu Inshafuddin, kami berkomitmen mendampingi peserta didik
+                  agar tumbuh menjadi pribadi yang berilmu, terampil, dan berakhlakul karimah. Semoga website ini
+                  memberikan gambaran utuh mengenai iklim belajar dan nilai yang kami rawat bersama.
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <ButtonLink href="/tentang-kami/" variant="gold">
+                  Selengkapnya
+                  <svg
+                    aria-hidden="true"
+                    className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover/btn:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </ButtonLink>
               </div>
             </div>
 
-            {/* Pesan Sambutan */}
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-block px-3 py-1 rounded-full bg-surface-white text-brand-emerald text-xs font-semibold border border-brand-emerald/10">
-                Sambutan Kepala Sekolah
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-brand-emerald leading-tight">
-                Selamat Datang di Website Resmi SMP Inshafuddin
-              </h2>
-              <div className="space-y-3 text-sm sm:text-base text-ink-muted leading-relaxed">
-                <p>
-                  <span className="font-semibold text-brand-emerald italic">Assalaamu’alaikum Warahmatullahi Wabarakatuh.</span>
-                </p>
-                <p>
-                  Segala puji syukur kita panjatkan kepada Allah SWT, atas limpahan rahmat dan karunia-Nya sehingga website resmi SMP Inshafuddin Banda Aceh dapat hadir sebagai sarana informasi dan keterbukaan bagi masyarakat.
-                </p>
-                <p>
-                  Sebagai bagian integral dari Dayah Terpadu Inshafuddin, kami berkomitmen mendampingi peserta didik agar tumbuh menjadi pribadi yang berilmu, terampil, dan berakhlakul karimah. Semoga website ini memberikan gambaran utuh mengenai iklim belajar dan nilai yang kami rawat bersama.
-                </p>
-              </div>
-              <div className="pt-2">
-                <Link
-                  href="/tentang-kami/"
-                  className="inline-flex items-center text-sm font-semibold text-brand-emerald hover:text-brand-emerald-hover focus:outline-none focus:ring-1 focus:ring-brand-emerald py-1"
-                >
-                  Baca Selengkapnya Profil Sekolah
-                  <svg className="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Link>
-              </div>
+            {/* Foto kepala sekolah dalam bingkai lengkung */}
+            <div className="order-1 flex justify-center lg:order-2 lg:col-span-5">
+              <figure className="relative w-60 sm:w-72">
+                <div
+                  aria-hidden="true"
+                  className="frame-arch absolute -inset-3 border border-brand-gold/50"
+                />
+                <div className="frame-arch relative aspect-[3/4] w-full overflow-hidden bg-brand-emerald-deep shadow-lift">
+                  <Image
+                    src={PRINCIPAL_PHOTO}
+                    alt="Warnidah, S.Pd.I — Kepala SMP Inshafuddin Banda Aceh"
+                    fill
+                    sizes="(max-width: 640px) 240px, 288px"
+                    className="object-cover object-top"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-brand-emerald-deep/80 to-transparent"
+                  />
+                </div>
+
+                <figcaption className="relative z-10 mx-auto -mt-8 w-[92%] rounded-control border border-brand-gold-light/60 bg-brand-gold-light px-4 py-3 text-center shadow-lift">
+                  <span className="block font-display text-lg font-semibold leading-tight text-brand-emerald-deep">
+                    Warnidah, S.Pd.I
+                  </span>
+                  <span className="mt-0.5 block text-xs font-semibold text-brand-emerald">
+                    Kepala SMP Inshafuddin Banda Aceh
+                  </span>
+                </figcaption>
+              </figure>
             </div>
           </div>
         </div>

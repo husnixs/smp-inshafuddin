@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { getPageBySlug } from '@/lib/wordpress/api';
 import { siteConfig } from '@/config/site';
+import PageHero from '@/components/ui/PageHero';
+import SectionHeading from '@/components/ui/SectionHeading';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
 
 export const revalidate = 3600; // 60 menit
 
@@ -60,162 +63,153 @@ export default async function TentangKamiPage() {
   ];
 
   return (
-    <div className="py-12 lg:py-16">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Breadcrumb & Header */}
-        <div className="border-b border-divider pb-8">
-          <nav aria-label="Breadcrumb" className="text-xs text-ink-muted mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-brand-emerald">
-                  Beranda
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-brand-emerald font-semibold">Tentang Kami</li>
-            </ol>
-          </nav>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-emerald tracking-tight">
-            Profil & Sejarah Sekolah
-          </h1>
-          <p className="text-base text-ink-muted mt-2 max-w-3xl">
-            Mengenal lebih dekat identitas, sejarah, visi misi, serta komitmen pengabdian SMP Inshafuddin Banda Aceh sejak tahun 1974.
-          </p>
+    <>
+      <PageHero
+        eyebrow="Profil Sekolah"
+        title="Profil & Sejarah Sekolah"
+        description="Mengenal lebih dekat identitas, sejarah, visi misi, serta komitmen pengabdian SMP Inshafuddin Banda Aceh sejak tahun 1974."
+        breadcrumb={[{ label: 'Tentang Kami' }]}
+      />
+
+      {/* Sejarah */}
+      <section aria-labelledby="sejarah-heading" className="bg-surface-white py-16 lg:py-24">
+        <div className="mx-auto grid max-w-content grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+          <div className="lg:col-span-4">
+            <SectionHeading id="sejarah-heading" eyebrow="Sejarah Singkat" title="Didirikan sejak tahun 1974" />
+            <p aria-hidden="true" className="-mt-4 hidden font-display text-8xl font-semibold leading-none text-brand-gold/40 lg:block">
+              1974
+            </p>
+          </div>
+          <div className="space-y-5 text-base leading-relaxed text-ink-primary sm:text-lg lg:col-span-8 lg:border-l lg:border-divider lg:pl-12">
+            <p>
+              <strong className="text-brand-emerald">SMP Inshafuddin</strong> merupakan sekolah swasta di bawah naungan{' '}
+              <strong className="text-brand-emerald">Yayasan Pembina Inshafuddin</strong>, berlokasi di Desa Lambaro Skep,
+              Kecamatan Kuta Alam, Kota Banda Aceh. Sekolah ini didirikan pada tahun <strong>1974</strong> sebagai bagian
+              dari kesadaran para ulama dan tokoh masyarakat Aceh untuk melahirkan lembaga pendidikan yang memadukan ilmu
+              pengetahuan umum dan dasar-dasar ilmu agama Islam.
+            </p>
+            <p className="text-ink-muted">
+              Berada di lingkungan <strong className="text-brand-emerald">Dayah Terpadu Inshafuddin</strong>, SMP
+              Inshafuddin menerapkan model pendidikan integral di mana peserta didik tidak hanya belajar sesuai kurikulum
+              nasional, tetapi juga mendapatkan pembinaan moral, pengajian kitab, hafalan Al-Qur’an, serta penguasaan
+              bahasa asing.
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Sejarah Berdiri */}
-        <section className="bg-surface-white p-8 sm:p-12 rounded-card border border-divider shadow-sm space-y-6">
-          <div className="inline-block px-3 py-1 rounded-full bg-surface-sage text-brand-emerald text-xs font-semibold">
-            Sejarah Singkat
-          </div>
-          <h2 className="text-2xl font-bold text-brand-emerald">
-            Didirikan Sejak Tahun 1974
-          </h2>
-          <div className="text-ink-primary leading-relaxed space-y-4 text-base">
-            <p>
-              <strong>SMP Inshafuddin</strong> merupakan sekolah swasta di bawah naungan <strong>Yayasan Pembina Inshafuddin</strong>, berlokasi di Desa Lambaro Skep, Kecamatan Kuta Alam, Kota Banda Aceh. Sekolah ini didirikan pada tahun <strong>1974</strong> sebagai bagian dari kesadaran para ulama dan tokoh masyarakat Aceh untuk melahirkan lembaga pendidikan yang memadukan ilmu pengetahuan umum dan dasar-dasar ilmu agama Islam.
-            </p>
-            <p>
-              Berada di lingkungan <strong>Dayah Terpadu Inshafuddin</strong>, SMP Inshafuddin menerapkan model pendidikan integral di mana peserta didik tidak hanya belajar sesuai kurikulum nasional, tetapi juga mendapatkan pembinaan moral, pengajian kitab, hafalan Al-Qur\'an, serta penguasaan bahasa asing.
-            </p>
-          </div>
-        </section>
-
-        {/* Visi & Misi */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Visi */}
-          <section className="lg:col-span-5 bg-brand-emerald text-surface-white p-8 sm:p-10 rounded-card flex flex-col justify-between shadow-md">
-            <div>
-              <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-3 block">
+      {/* Visi & Misi */}
+      <section aria-label="Visi dan misi sekolah" className="bg-surface-sand py-16 lg:py-24">
+        <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+          <div className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-8 text-ink-on-dark shadow-lift sm:p-10 lg:col-span-5">
+            <GirihPattern className="text-brand-gold/[0.14]" />
+            <div className="relative flex h-full flex-col">
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
+                <StarMark className="h-3 w-3 text-brand-gold" />
                 Visi Sekolah
+              </p>
+              <span aria-hidden="true" className="mt-6 font-display text-7xl leading-none text-brand-gold">
+                &ldquo;
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold leading-snug mb-6">
-                &ldquo;Terwujudnya insan yang berkarakter, unggul dalam prestasi, dan bertaqwa kepada Allah SWT.&rdquo;
+              <h2 className="-mt-4 font-display text-2xl font-semibold leading-snug text-surface-white sm:text-3xl">
+                Terwujudnya insan yang berkarakter, unggul dalam prestasi, dan bertaqwa kepada Allah SWT.
               </h2>
+              <p className="mt-auto border-t border-surface-white/15 pt-6 text-sm leading-relaxed lg:mt-10">
+                Visi ini menjadi rujukan utama bagi setiap kebijakan kurikulum, bimbingan kesiswaan, dan tata pergaulan di
+                SMP Inshafuddin Banda Aceh.
+              </p>
             </div>
-            <div className="pt-6 border-t border-surface-sage/20 text-xs text-surface-sage/80 leading-relaxed">
-              Visi ini menjadi rujukan utama bagi setiap kebijakan kurikulum, bimbingan kesiswaan, dan tata pergaulan di SMP Inshafuddin Banda Aceh.
-            </div>
-          </section>
+          </div>
 
-          {/* Misi */}
-          <section className="lg:col-span-7 bg-surface-white p-8 sm:p-10 rounded-card border border-divider shadow-sm">
-            <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-3 block">
+          <div className="card-surface p-8 sm:p-10 lg:col-span-7">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
+              <StarMark className="h-3 w-3 text-brand-gold" />
               Misi Sekolah
-            </span>
-            <h2 className="text-xl sm:text-2xl font-bold text-brand-emerald mb-6">
-              Delapan Misi Utama
-            </h2>
-            <ol className="space-y-3.5 text-sm text-ink-primary">
-              {missions.map((m, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-surface-sage text-brand-emerald font-bold text-xs flex items-center justify-center">
-                    {idx + 1}
+            </p>
+            <h2 className="mt-3 font-display text-2xl font-semibold text-brand-emerald sm:text-3xl">Delapan misi utama</h2>
+            <ol className="mt-8 space-y-4">
+              {missions.map((mission, idx) => (
+                <li key={mission} className="flex items-start gap-4 text-sm leading-relaxed text-ink-primary sm:text-base">
+                  <span className="w-8 shrink-0 font-display text-xl font-semibold leading-6 text-brand-gold-ink">
+                    {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <span className="leading-relaxed">{m}</span>
+                  <span>{mission}</span>
                 </li>
               ))}
             </ol>
-          </section>
+          </div>
         </div>
+      </section>
 
-        {/* Tujuan Pendidikan */}
-        <section className="bg-surface-white p-8 sm:p-12 rounded-card border border-divider shadow-sm">
-          <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">
-            Tujuan Institusi
-          </span>
-          <h2 className="text-2xl font-bold text-brand-emerald mb-6">
-            Tujuan Pendidikan SMP Inshafuddin
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-ink-primary">
-            {goals.map((g, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-surface-ivory border border-divider/70 flex items-start gap-3">
-                <span className="text-brand-gold font-bold">✓</span>
-                <span className="leading-relaxed">{g}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Pimpinan & Tenaga Pendidik */}
-        <section className="space-y-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">
-              Struktur Kepemimpinan
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-brand-emerald">
-              Pimpinan & Tenaga Kependidikan
-            </h2>
-            <p className="text-sm text-ink-muted mt-2">
-              Didukung oleh guru dan tenaga kependidikan yang berdedikasi membimbing dan mengayomi siswa.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
-            {teachers.map((t) => (
-              <div
-                key={t.name}
-                className="bg-surface-white rounded-card border border-divider overflow-hidden text-center shadow-sm p-6 flex flex-col items-center"
+      {/* Tujuan */}
+      <section aria-labelledby="tujuan-heading" className="bg-surface-white py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="tujuan-heading" eyebrow="Tujuan Institusi" title="Tujuan pendidikan SMP Inshafuddin" />
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {goals.map((goal) => (
+              <li
+                key={goal}
+                className="flex items-start gap-4 rounded-card border border-divider bg-surface-ivory p-5 text-sm leading-relaxed text-ink-primary sm:text-base"
               >
-                <div className="relative w-36 h-48 rounded-xl overflow-hidden shadow-sm bg-surface-sage mb-4 border border-divider">
-                  <Image
-                    src={t.image}
-                    alt={t.name}
-                    fill
-                    sizes="(max-width: 640px) 144px, 144px"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <h3 className="font-bold text-brand-emerald text-base">
-                  {t.name}
-                </h3>
-                <p className="text-xs text-ink-muted mt-1">
-                  {t.role}
-                </p>
-              </div>
+                <StarMark className="mt-1 h-4 w-4 shrink-0 text-brand-gold" />
+                <span>{goal}</span>
+              </li>
             ))}
-          </div>
+          </ul>
+        </div>
+      </section>
 
-          {/* Bagan Struktur Organisasi jika tersedia dari WordPress */}
-          <div className="bg-surface-white p-6 sm:p-8 rounded-card border border-divider text-center">
-            <h3 className="text-base font-bold text-brand-emerald mb-4">
-              Bagan Struktur Organisasi Sekolah
+      {/* Pimpinan */}
+      <section aria-labelledby="pimpinan-heading" className="bg-surface-ivory py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            id="pimpinan-heading"
+            eyebrow="Struktur Kepemimpinan"
+            title="Pimpinan & tenaga kependidikan"
+            description="Didukung oleh guru dan tenaga kependidikan yang berdedikasi membimbing dan mengayomi siswa."
+            align="center"
+          />
+
+          <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+            {teachers.map((teacher) => (
+              <li key={teacher.name} className="flex flex-col items-center text-center">
+                <div className="relative w-48 sm:w-full sm:max-w-[220px]">
+                  <div aria-hidden="true" className="frame-arch absolute -inset-2 border border-brand-gold/50" />
+                  <div className="frame-arch relative aspect-[3/4] w-full overflow-hidden bg-surface-sage shadow-card">
+                    <Image
+                      src={teacher.image}
+                      alt={teacher.name}
+                      fill
+                      sizes="(max-width: 640px) 192px, 220px"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                </div>
+                <h3 className="mt-6 font-display text-lg font-semibold text-brand-emerald">{teacher.name}</h3>
+                <p className="mt-1 text-sm text-ink-muted">{teacher.role}</p>
+              </li>
+            ))}
+          </ul>
+
+          <figure className="card-surface mx-auto mt-16 max-w-3xl p-6 sm:p-8">
+            <h3 className="text-center font-display text-xl font-semibold text-brand-emerald">
+              Bagan struktur organisasi sekolah
             </h3>
-            <div className="relative w-full max-w-2xl mx-auto aspect-[4/3] rounded-xl overflow-hidden bg-surface-sage border border-divider">
+            <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden rounded-control border border-divider bg-surface-white">
               <Image
                 src="https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-19-at-21.24.47-1.jpeg"
                 alt="Bagan Struktur Organisasi SMP Inshafuddin Banda Aceh"
                 fill
-                sizes="(max-width: 768px) 100vw, 672px"
+                sizes="(max-width: 768px) 100vw, 720px"
                 className="object-contain"
               />
             </div>
-            <p className="text-xs text-ink-muted mt-3">
+            <figcaption className="mt-3 text-center text-xs text-ink-muted">
               Bagan resmi struktur organisasi SMP Inshafuddin Banda Aceh.
-            </p>
-          </div>
-        </section>
-      </div>
-    </div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+    </>
   );
 }

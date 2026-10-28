@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
 import { siteConfig } from '@/config/site';
+import PageHero from '@/components/ui/PageHero';
+import MediaCard from '@/components/ui/MediaCard';
 
 export const revalidate = 3600;
 
@@ -82,64 +82,30 @@ export default function FasilitasPage() {
   ];
 
   return (
-    <div className="py-12 lg:py-16">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Breadcrumb & Header */}
-        <div className="border-b border-divider pb-8">
-          <nav aria-label="Breadcrumb" className="text-xs text-ink-muted mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-brand-emerald">
-                  Beranda
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-brand-emerald font-semibold">Fasilitas</li>
-            </ol>
-          </nav>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-emerald tracking-tight">
-            Sarana & Prasarana Sekolah
-          </h1>
-          <p className="text-base text-ink-muted mt-2 max-w-3xl">
-            Untuk kegiatan belajar mengajar di dalam dan di luar kelas, SMP Inshafuddin menyediakan fasilitas pembelajaran yang aman, nyaman, dan mendukung potensi siswa.
-          </p>
-        </div>
+    <>
+      <PageHero
+        eyebrow="Sarana & Prasarana"
+        title="Sarana & Prasarana Sekolah"
+        description="Untuk kegiatan belajar mengajar di dalam dan di luar kelas, SMP Inshafuddin menyediakan fasilitas pembelajaran yang aman, nyaman, dan mendukung potensi siswa."
+        breadcrumb={[{ label: 'Fasilitas' }]}
+      />
 
-        {/* Grid Fasilitas dengan Gambar */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {facilities.map((f) => (
-            <div
-              key={f.title}
-              className="bg-surface-white rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-lg flex flex-col justify-between overflow-hidden group"
-            >
-              <div>
-                {/* Gambar Fasilitas */}
-                <div className="relative aspect-[16/10] w-full bg-surface-sage overflow-hidden border-b border-divider">
-                  <Image
-                    src={f.image}
-                    alt={f.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="p-6 sm:p-8">
-                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
-                    {f.type}
-                  </span>
-                  <h2 className="text-xl font-bold text-brand-emerald mb-3">
-                    {f.title}
-                  </h2>
-                  <p className="text-sm text-ink-muted leading-relaxed">
-                    {f.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
+      <section aria-label="Daftar fasilitas" className="bg-surface-ivory py-16 lg:py-24">
+        <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 lg:px-8">
+          {facilities.map((facility) => (
+            <MediaCard
+              key={facility.title}
+              title={facility.title}
+              description={facility.desc}
+              tag={facility.type}
+              image={facility.image}
+              imageAlt={facility.alt}
+              imageSizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+              headingLevel="h2"
+            />
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

@@ -1,74 +1,90 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import ButtonLink from '@/components/ui/ButtonLink';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
 
 interface HeroSectionProps {
   heroImageUrl?: string;
 }
 
+const DEFAULT_HERO_IMAGE =
+  'https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-22.16.57-scaled.jpeg';
+
 export default function HeroSection({ heroImageUrl }: HeroSectionProps) {
-  const displayImage =
-    heroImageUrl ||
-    'https://www.smpinshafuddin.sch.id/wp-content/uploads/2025/06/WhatsApp-Image-2025-06-02-at-22.16.57-scaled.jpeg';
+  const displayImage = heroImageUrl || DEFAULT_HERO_IMAGE;
 
   return (
-    <section className="bg-surface-white border-b border-divider py-12 lg:py-16">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-center">
-          {/* Sisi Kiri: 30% Kolom Teks */}
-          <div className="lg:col-span-3 space-y-5 text-left">
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-sage border border-brand-emerald/20 text-brand-emerald text-xs font-semibold tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse" />
-              SMP Inshafuddin • Banda Aceh
-            </div>
+    <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden bg-surface-ivory">
+      <GirihPattern className="text-brand-emerald/[0.05]" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 right-0 -z-0 hidden w-[42%] bg-brand-emerald-deep lg:block"
+      />
+      <GirihPattern className="hidden text-brand-gold/[0.12] lg:block lg:[clip-path:inset(0_0_0_58%)]" />
 
-            {/* Main Heading H1 */}
-            <h1 className="text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-extrabold text-brand-emerald tracking-tight leading-snug">
-              Belajar dengan Ilmu, <br />
-              <span className="text-ink-primary">Tumbuh dengan Akhlak.</span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-sm text-ink-muted leading-relaxed">
-              Lingkungan pendidikan terpadu di bawah naungan Yayasan Pembina Inshafuddin yang memadukan keunggulan kurikulum nasional dan nilai-nilai dayah dalam membentuk generasi cerdas, berkarakter, dan bertakwa.
+      <div className="relative mx-auto max-w-content px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-5">
+            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-surface-white px-3.5 py-1.5 text-xs font-semibold text-brand-emerald shadow-card">
+              <StarMark className="h-3 w-3 text-brand-gold" />
+              SMP Inshafuddin · Banda Aceh
             </p>
 
-            {/* Call to Actions */}
-            <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 pt-2">
-              <Link
-                href="/tentang-kami/"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-brand-emerald text-surface-white font-semibold text-xs sm:text-sm hover:bg-brand-emerald-hover focus:outline-none focus:ring-2 focus:ring-brand-emerald transition-all shadow-sm min-h-[44px]"
-              >
+            <h1
+              id="hero-heading"
+              className="font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-brand-emerald sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]"
+            >
+              Belajar dengan ilmu,{' '}
+              <span className="italic text-brand-gold-ink">tumbuh</span> dengan akhlak.
+            </h1>
+
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg">
+              Lingkungan pendidikan terpadu di bawah naungan Yayasan Pembina Inshafuddin yang memadukan kurikulum
+              nasional dan nilai-nilai dayah untuk membentuk generasi cerdas, berkarakter, dan bertakwa.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/tentang-kami/">
                 Kenali Sekolah
-                <svg className="w-4 h-4 ml-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  aria-hidden="true"
+                  className="h-4 w-4 transition-transform duration-300 ease-out-expo group-hover/btn:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </Link>
-              <Link
-                href="/akademik/"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-surface-white text-brand-emerald border border-divider font-semibold text-xs sm:text-sm hover:bg-surface-sage/60 focus:outline-none focus:ring-2 focus:ring-brand-emerald transition-all min-h-[44px]"
-              >
+              </ButtonLink>
+              <ButtonLink href="/akademik/" variant="secondary">
                 Program Akademik
-              </Link>
+              </ButtonLink>
             </div>
 
-            {/* Milestone Note */}
-            <div className="pt-2 border-t border-divider/60">
-              <p className="text-[11px] text-ink-muted font-medium">
-                Didirikan Sejak 1974 • 50+ Tahun Membina Insan Berilmu
-              </p>
-            </div>
+            <dl className="mt-10 flex gap-8 border-t border-divider pt-6">
+              <div>
+                <dt className="text-xs font-medium text-ink-muted">Berdiri sejak</dt>
+                <dd className="mt-1 font-display text-2xl font-semibold text-brand-emerald">1974</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-medium text-ink-muted">Model pendidikan</dt>
+                <dd className="mt-1 font-display text-2xl font-semibold text-brand-emerald">Sekolah & Dayah</dd>
+              </div>
+            </dl>
           </div>
 
-          {/* Sisi Kanan: 70% Kolom Gambar (Tanpa Gradient) */}
-          <div className="lg:col-span-7 w-full">
-            <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden shadow-md border border-divider bg-surface-sage">
+          <div className="relative lg:col-span-7 lg:pl-6">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 translate-x-3 translate-y-3 rounded-hero border border-brand-gold/60 sm:-inset-4 sm:translate-x-4 sm:translate-y-4"
+            />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-hero bg-surface-sage shadow-lift sm:aspect-[16/11]">
               <Image
                 src={displayImage}
-                alt="Lingkungan dan Suasana SMP Inshafuddin Banda Aceh"
+                alt="Lingkungan dan suasana SMP Inshafuddin Banda Aceh"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 840px"
+                sizes="(max-width: 1024px) 100vw, 720px"
                 className="object-cover object-center"
               />
             </div>

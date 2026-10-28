@@ -1,36 +1,35 @@
-import Link from 'next/link';
+import ButtonLink from '@/components/ui/ButtonLink';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
 
 export default function NotFound() {
   return (
-    <div className="py-20 lg:py-32 flex items-center justify-center px-4 text-center">
-      <div className="max-w-md mx-auto space-y-6">
-        <div className="w-16 h-16 mx-auto rounded-full bg-surface-sage flex items-center justify-center text-brand-emerald text-2xl font-bold border border-brand-emerald/20">
+    <section className="relative isolate overflow-hidden bg-surface-ivory px-4 py-20 text-center lg:py-32">
+      <GirihPattern className="text-brand-emerald/[0.05]" />
+      <div className="relative mx-auto max-w-lg">
+        <p aria-hidden="true" className="font-display text-8xl font-semibold leading-none text-brand-gold/50 sm:text-9xl">
           404
-        </div>
+        </p>
+        <StarMark className="mx-auto mt-6 h-5 w-5 text-brand-gold" />
 
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-brand-emerald tracking-tight">
-          Halaman Tidak Ditemukan
+        <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight text-brand-emerald sm:text-4xl">
+          Halaman tidak ditemukan
         </h1>
 
-        <p className="text-sm text-ink-muted leading-relaxed">
-          Mohon maaf, halaman atau artikel yang Anda cari tidak tersedia, telah dipindahkan, atau alamat URL yang dimasukkan salah.
+        <p className="mt-4 text-base leading-relaxed text-ink-muted">
+          Mohon maaf, halaman atau artikel yang Anda cari tidak tersedia, telah dipindahkan, atau alamat URL yang
+          dimasukkan salah.
         </p>
 
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-          <Link
-            href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-emerald text-surface-white font-semibold text-sm hover:bg-brand-emerald-hover focus:outline-none focus:ring-2 focus:ring-brand-emerald min-h-[44px]"
-          >
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <ButtonLink href="/" className="w-full sm:w-auto">
             Kembali ke Beranda
-          </Link>
-          <Link
-            href="/berita/"
-            className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface-white text-brand-emerald border border-divider font-semibold text-sm hover:bg-surface-sage min-h-[44px]"
-          >
+          </ButtonLink>
+          <ButtonLink href="/berita/" variant="secondary" className="w-full sm:w-auto">
             Lihat Berita Sekolah
-          </Link>
+          </ButtonLink>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

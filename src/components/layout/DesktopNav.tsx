@@ -3,32 +3,34 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
+import { isNavItemActive } from '@/lib/navigation';
 
 export default function DesktopNav() {
   const pathname = usePathname();
-  const normalizedPath = pathname ? (pathname.endsWith('/') ? pathname : `${pathname}/`) : '/';
 
   return (
-    <nav aria-label="Navigasi Utama" className="hidden md:flex items-center gap-1.5 lg:gap-2">
+    <nav aria-label="Navigasi Utama" className="hidden items-center gap-1 md:flex">
       {siteConfig.navItems.map((item) => {
-        const normalizedItem = item.href.endsWith('/') ? item.href : `${item.href}/`;
-        const isActive =
-          item.href === '/'
-            ? normalizedPath === '/'
-            : normalizedPath === normalizedItem || (item.href === '/berita/' && normalizedPath.startsWith('/berita/'));
+        const isActive = isNavItemActive(pathname, item.href);
 
         return (
           <Link
             key={item.href}
             href={item.href}
             aria-current={isActive ? 'page' : undefined}
-            className={`px-3.5 py-2 rounded-lg text-sm transition-all min-h-[44px] flex items-center focus:outline-none focus:ring-2 focus:ring-brand-emerald ${
+            className={`focus-ring relative flex min-h-[44px] items-center rounded-control px-3 text-sm transition-colors lg:px-3.5 ${
               isActive
-                ? 'bg-brand-emerald text-surface-white font-semibold shadow-sm'
-                : 'font-medium text-ink-primary hover:text-brand-emerald hover:bg-surface-sage/70'
+                ? 'font-semibold text-brand-emerald'
+                : 'font-medium text-ink-muted hover:bg-surface-sage/70 hover:text-brand-emerald'
             }`}
           >
             {item.label}
+            <span
+              aria-hidden="true"
+              className={`absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-brand-gold transition-transform duration-300 ease-out-expo lg:inset-x-3.5 ${
+                isActive ? 'scale-x-100' : 'scale-x-0'
+              }`}
+            />
           </Link>
         );
       })}

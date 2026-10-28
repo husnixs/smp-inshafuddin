@@ -1,66 +1,51 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
+import StarMark from '@/components/ui/StarMark';
 import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-surface-white/95 backdrop-blur-md border-b border-divider shadow-sm transition-all">
-      {/* Skip to Content for A11y */}
+    <header className="sticky top-0 z-40 border-b border-divider/80 bg-surface-white/90 backdrop-blur-md supports-[backdrop-filter]:bg-surface-white/80">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-emerald focus:text-surface-white focus:rounded-md focus:shadow-md"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-control focus:bg-brand-emerald focus:px-4 focus:py-2 focus:text-surface-white focus:shadow-lift"
       >
         Menuju konten utama
       </a>
 
-      {/* Top Banner Ribbon */}
-      <div className="bg-brand-emerald text-surface-white py-1.5 px-4 text-xs font-medium">
-        <div className="max-w-content mx-auto flex justify-between items-center">
-          <span className="hidden sm:inline">
-            Lingkungan Pendidikan Islami Berkarakter & Unggul Prestasi
+      {/* Pita identitas */}
+      <div className="bg-brand-emerald-deep text-ink-on-dark">
+        <div className="mx-auto flex max-w-content items-center justify-between gap-4 px-4 py-1.5 text-xs sm:px-6 lg:px-8">
+          <span className="inline-flex items-center gap-2">
+            <StarMark className="h-2.5 w-2.5 text-brand-gold" />
+            <span className="hidden sm:inline">Bagian dari Dayah Terpadu Inshafuddin</span>
+            <span className="sm:hidden">Dayah Terpadu Inshafuddin</span>
           </span>
-          <span className="sm:hidden font-semibold">SMP Inshafuddin Banda Aceh</span>
-          <span className="text-surface-sage/90">Banda Aceh, Indonesia</span>
+          <span className="text-brand-gold-light">Banda Aceh</span>
         </div>
       </div>
 
-      {/* Main Header Container */}
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo & School Identity */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-emerald rounded-lg p-1">
-            <div className="relative w-36 sm:w-44 h-12 flex items-center">
+      <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+        <div className="flex h-[72px] items-center justify-between gap-6">
+          <Link href="/" className="focus-ring flex shrink-0 items-center gap-3 rounded-control p-1">
+            <span className="relative block h-11 w-32 sm:w-40">
               <Image
                 src={siteConfig.logo.url}
                 alt={siteConfig.logo.alt}
                 fill
                 priority
-                sizes="(max-width: 640px) 144px, 176px"
+                sizes="(max-width: 640px) 128px, 160px"
                 className="object-contain object-left"
               />
-            </div>
-            <div className="hidden lg:block border-l border-divider pl-3">
-              <span className="block text-xs font-bold text-brand-emerald tracking-wide uppercase">
-                SMP Inshafuddin
-              </span>
-              <span className="block text-[11px] text-ink-muted">
-                Dayah Terpadu Inshafuddin
-              </span>
-            </div>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
           <DesktopNav />
-
-          {/* Mobile Nav Button */}
           <MobileNav />
         </div>
       </div>
-
-      {/* Thin Gold Subtle Accent Line */}
-      <div className="h-[2px] bg-gradient-to-r from-brand-emerald via-brand-gold to-brand-emerald opacity-60" />
     </header>
   );
 }

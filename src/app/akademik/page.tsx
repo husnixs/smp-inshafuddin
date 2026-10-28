@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { siteConfig } from '@/config/site';
+import PageHero from '@/components/ui/PageHero';
+import SectionHeading from '@/components/ui/SectionHeading';
+import GirihPattern from '@/components/ui/GirihPattern';
+import StarMark from '@/components/ui/StarMark';
 
 export const revalidate = 3600;
 
@@ -22,7 +25,7 @@ export default function AkademikPage() {
     },
     {
       title: 'Pendidikan Dayah',
-      desc: 'Dibimbing langsung oleh ustadz dan ustazah mahir dalam penguasaan Kitab Kuning, pembiasaan ibadah, tadarus dan tajwid Al-Qur\'an, bahasa Arab, serta pembentukan akhlakul karimah.',
+      desc: 'Dibimbing langsung oleh ustadz dan ustazah mahir dalam penguasaan Kitab Kuning, pembiasaan ibadah, tadarus dan tajwid Al-Qur’an, bahasa Arab, serta pembentukan akhlakul karimah.',
       badge: 'Kurikulum Dayah',
     },
     {
@@ -31,8 +34,8 @@ export default function AkademikPage() {
       badge: 'Bilingual',
     },
     {
-      title: 'Hafalan Al-Qur\'an (Tahfiz)',
-      desc: 'Program bimbingan hafalan ayat-ayat Al-Qur\'an berjenjang dengan target hafalan terukur dan setoran rutin terjadwal kepada ustadz/ustazah pembimbing.',
+      title: 'Hafalan Al-Qur’an (Tahfiz)',
+      desc: 'Program bimbingan hafalan ayat-ayat Al-Qur’an berjenjang dengan target hafalan terukur dan setoran rutin terjadwal kepada ustadz/ustazah pembimbing.',
       badge: 'Tahfiz Quran',
     },
     {
@@ -53,89 +56,73 @@ export default function AkademikPage() {
   ];
 
   return (
-    <div className="py-12 lg:py-16">
-      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Breadcrumb & Header */}
-        <div className="border-b border-divider pb-8">
-          <nav aria-label="Breadcrumb" className="text-xs text-ink-muted mb-4">
-            <ol className="flex items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-brand-emerald">
-                  Beranda
-                </Link>
-              </li>
-              <li>/</li>
-              <li className="text-brand-emerald font-semibold">Akademik</li>
-            </ol>
-          </nav>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-brand-emerald tracking-tight">
-            Wawasan Kurikulum & Program Akademik
-          </h1>
-          <p className="text-base text-ink-muted mt-2 max-w-3xl">
-            Komitmen kami untuk memberikan pendidikan yang seimbang, mengasah ketajaman intelektual sekaligus memperkokoh pondasi keagamaan santri/siswa.
-          </p>
-        </div>
+    <>
+      <PageHero
+        eyebrow="Akademik"
+        title="Wawasan Kurikulum & Program Akademik"
+        description="Komitmen kami untuk memberikan pendidikan yang seimbang, mengasah ketajaman intelektual sekaligus memperkokoh pondasi keagamaan santri/siswa."
+        breadcrumb={[{ label: 'Akademik' }]}
+      />
 
-        {/* Landasan Kurikulum */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-surface-white p-8 rounded-card border border-divider shadow-sm">
-            <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">
+      {/* Landasan kurikulum */}
+      <section aria-label="Landasan kurikulum" className="bg-surface-white py-16 lg:py-24">
+        <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2 lg:gap-8 lg:px-8">
+          <article className="card-surface p-8 sm:p-10">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
+              <StarMark className="h-3 w-3 text-brand-gold" />
               Standar Nasional
-            </span>
-            <h2 className="text-xl font-bold text-brand-emerald mb-4">
-              Kurikulum Nasional
-            </h2>
-            <p className="text-sm text-ink-primary leading-relaxed">
-              Kurikulum yang berlaku pada SMP Inshafuddin mengikuti kurikulum tingkat SMP sesuai dengan ketentuan Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. Seluruh buku teks pembelajaran disediakan di perpustakaan sekolah untuk memastikan setiap siswa memiliki akses materi yang memadai.
             </p>
-          </div>
+            <h2 className="mt-4 font-display text-2xl font-semibold text-brand-emerald sm:text-3xl">Kurikulum Nasional</h2>
+            <p className="mt-4 text-sm leading-relaxed text-ink-muted sm:text-base">
+              Kurikulum yang berlaku pada SMP Inshafuddin mengikuti kurikulum tingkat SMP sesuai dengan ketentuan
+              Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. Seluruh buku teks pembelajaran disediakan di
+              perpustakaan sekolah untuk memastikan setiap siswa memiliki akses materi yang memadai.
+            </p>
+          </article>
 
-          <div className="bg-surface-white p-8 rounded-card border border-divider shadow-sm">
-            <span className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2 block">
-              Pesantren Terpadu
-            </span>
-            <h2 className="text-xl font-bold text-brand-emerald mb-4">
-              Kurikulum Dayah Terpadu
-            </h2>
-            <p className="text-sm text-ink-primary leading-relaxed">
-              Untuk pendidikan agama Islam dan ketrampilan keagamaan, sekolah mengintegrasikan kurikulum khas Dayah Terpadu Inshafuddin. Siswa mendapatkan pengajaran kitab mu\'tabarah, fardhu \'ain, pembiasaan shalat berjamaah, serta adab Islami di bawah bimbingan para dewan guru dan ustadz.
-            </p>
-          </div>
+          <article className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-8 text-ink-on-dark shadow-lift sm:p-10">
+            <GirihPattern className="text-brand-gold/[0.14]" />
+            <div className="relative">
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
+                <StarMark className="h-3 w-3 text-brand-gold" />
+                Pesantren Terpadu
+              </p>
+              <h2 className="mt-4 font-display text-2xl font-semibold text-surface-white sm:text-3xl">
+                Kurikulum Dayah Terpadu
+              </h2>
+              <p className="mt-4 text-sm leading-relaxed sm:text-base">
+                Untuk pendidikan agama Islam dan ketrampilan keagamaan, sekolah mengintegrasikan kurikulum khas Dayah
+                Terpadu Inshafuddin. Siswa mendapatkan pengajaran kitab mu’tabarah, fardhu ‘ain, pembiasaan shalat
+                berjamaah, serta adab Islami di bawah bimbingan para dewan guru dan ustadz.
+              </p>
+            </div>
+          </article>
         </div>
+      </section>
 
-        {/* 7 Program Unggulan Akademik */}
-        <section className="space-y-8">
-          <div>
-            <h2 className="text-xs font-bold text-brand-gold tracking-widest uppercase mb-2">
-              Program Unggulan
-            </h2>
-            <p className="text-2xl sm:text-3xl font-bold text-brand-emerald">
-              Tujuh Dimensi Pembelajaran Siswa
-            </p>
-          </div>
+      {/* Program unggulan */}
+      <section aria-labelledby="program-heading" className="bg-surface-ivory py-16 lg:py-24">
+        <div className="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+          <SectionHeading id="program-heading" eyebrow="Program Unggulan" title="Tujuh dimensi pembelajaran siswa" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {academicFeatures.map((feat) => (
-              <div
-                key={feat.title}
-                className="bg-surface-white p-6 sm:p-8 rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between"
-              >
-                <div>
-                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
-                    {feat.badge}
+          <ol className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {academicFeatures.map((feature, idx) => (
+              <li key={feature.title} className="group card-surface card-interactive flex flex-col p-6 sm:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <span className="inline-block rounded-full bg-surface-sage px-3 py-1 text-xs font-semibold text-brand-emerald">
+                    {feature.badge}
                   </span>
-                  <h3 className="text-lg font-bold text-ink-primary mb-3">
-                    {feat.title}
-                  </h3>
-                  <p className="text-sm text-ink-muted leading-relaxed">
-                    {feat.desc}
-                  </p>
+                  <span aria-hidden="true" className="font-display text-3xl font-semibold leading-none text-brand-gold/60">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
                 </div>
-              </div>
+                <h3 className="mt-5 font-display text-xl font-semibold text-brand-emerald">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{feature.desc}</p>
+              </li>
             ))}
-          </div>
-        </section>
-      </div>
-    </div>
+          </ol>
+        </div>
+      </section>
+    </>
   );
 }
