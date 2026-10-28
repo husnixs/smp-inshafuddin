@@ -1,6 +1,12 @@
+import type { Metadata } from 'next';
 import ButtonLink from '@/components/ui/ButtonLink';
 import GirihPattern from '@/components/ui/GirihPattern';
 import StarMark from '@/components/ui/StarMark';
+
+export const metadata: Metadata = {
+  title: 'Halaman Tidak Ditemukan',
+  robots: { index: false, follow: false },
+};
 
 export default function NotFound() {
   return (

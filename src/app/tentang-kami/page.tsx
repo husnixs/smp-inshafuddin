@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getPageBySlug } from '@/lib/wordpress/api';
-import { siteConfig } from '@/config/site';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { PAGE_SEO } from '@/lib/seo/pages';
+import { SCHOOL_ID, siteGraph, webPageSchema } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GirihPattern from '@/components/ui/GirihPattern';
@@ -9,14 +12,7 @@ import StarMark from '@/components/ui/StarMark';
 
 export const revalidate = 3600; // 60 menit
 
-export const metadata: Metadata = {
-  title: 'Profil & Tentang Kami',
-  description:
-    'Sejarah berdirinya SMP Inshafuddin Banda Aceh sejak tahun 1974, visi, misi, tujuan pendidikan, serta struktur pimpinan sekolah.',
-  alternates: {
-    canonical: `${siteConfig.url}/tentang-kami/`,
-  },
-};
+export const metadata: Metadata = buildPageMetadata(PAGE_SEO.tentangKami);
 
 export default async function TentangKamiPage() {
   // Ambil data jika tersedia dari WP
@@ -64,6 +60,17 @@ export default async function TentangKamiPage() {
 
   return (
     <>
+      <JsonLd
+        data={siteGraph(
+          webPageSchema({
+            type: 'AboutPage',
+            path: PAGE_SEO.tentangKami.path,
+            name: PAGE_SEO.tentangKami.title,
+            description: PAGE_SEO.tentangKami.description,
+            mainEntityId: SCHOOL_ID,
+          }),
+        )}
+      />
       <PageHero
         eyebrow="Profil Sekolah"
         title="Profil & Sejarah Sekolah"

@@ -1,40 +1,73 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPosts } from '@/lib/wordpress/api';
-import { siteConfig } from '@/config/site';
+import { notFound } from 'next/navigation';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { PAGE_SEO } from '@/lib/seo/pages';
+import { siteGraph, webPageSchema } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import NewsCard from '@/components/news/NewsCard';
 
 export const revalidate = 300; // 5 menit
 
-export const metadata: Metadata = {
-  title: 'Arsip Berita & Informasi',
-  description:
-    'Warta kegiatan, informasi akademik, dan agenda penting terkini dari lingkungan SMP Inshafuddin Banda Aceh.',
-  alternates: {
-    canonical: `${siteConfig.url}/berita/`,
-  },
-};
+const PER_PAGE = 9;
 
 interface BeritaPageProps {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<{ page?: string | string[] }>;
+}
+
+/** Nomor halaman valid (bilangan bulat ≥ 1) atau null bila parameter tidak valid. */
+function parsePageParam(raw: string | string[] | undefined): number | null {
+  if (raw === undefined) return 1;
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (!/^\d+$/.test(value)) return null;
+  const page = Number(value);
+  return page >= 1 ? page : null;
+}
+
+function pagePath(page: number): string {
+  return page > 1 ? `${PAGE_SEO.berita.path}?page=${page}` : PAGE_SEO.berita.path;
+}
+
+export async function generateMetadata({ searchParams }: BeritaPageProps): Promise<Metadata> {
+  const page = parsePageParam((await searchParams).page) ?? 1;
+  const { title, description } = PAGE_SEO.berita;
+
+  return buildPageMetadata({
+    title: page > 1 ? `${title} — Halaman ${page}` : title,
+    description: page > 1 ? `${description} Halaman ${page}.` : description,
+    path: pagePath(page),
+  });
 }
 
 export default async function BeritaPage({ searchParams }: BeritaPageProps) {
-  const resolvedParams = await searchParams;
-  const currentPage = Math.max(1, parseInt(resolvedParams.page || '1', 10));
-  const perPage = 9;
+  const currentPage = parsePageParam((await searchParams).page);
+  if (currentPage === null) notFound();
 
-  const { posts, total, totalPages } = await getPosts({
+  const { posts, total, totalPages, failed } = await getPosts({
     page: currentPage,
-    perPage,
+    perPage: PER_PAGE,
   });
+
+  // Halaman di luar rentang adalah 404 sungguhan, bukan halaman kosong ber-status 200 (soft 404).
+  if (!failed && currentPage > 1 && posts.length === 0) notFound();
 
   const pagerBase =
     'focus-ring inline-flex min-h-[44px] items-center gap-1.5 rounded-control border px-4 text-sm font-semibold transition-colors';
 
   return (
     <>
+      <JsonLd
+        data={siteGraph(
+          webPageSchema({
+            type: 'CollectionPage',
+            path: pagePath(currentPage),
+            name: PAGE_SEO.berita.title,
+            description: PAGE_SEO.berita.description,
+          }),
+        )}
+      />
       <PageHero
         eyebrow="Kabar Sekolah"
         title="Arsip Berita & Informasi"
@@ -52,15 +85,19 @@ export default async function BeritaPage({ searchParams }: BeritaPageProps) {
         <div className="mx-auto max-w-content space-y-12 px-4 sm:px-6 lg:px-8">
           {posts.length === 0 ? (
             <div className="card-surface mx-auto max-w-xl p-10 text-center">
-              <h2 className="font-display text-2xl font-semibold text-brand-emerald">Tidak ada berita</h2>
+              <h2 className="font-display text-2xl font-semibold text-brand-emerald">
+                {failed ? 'Berita belum dapat dimuat' : 'Belum ada berita'}
+              </h2>
               <p className="mt-2 text-sm text-ink-muted">
-                Tidak ditemukan artikel pada halaman ini. Silakan periksa halaman lainnya.
+                {failed
+                  ? 'Terjadi gangguan saat mengambil berita dari server. Silakan muat ulang halaman beberapa saat lagi.'
+                  : 'Belum ada artikel yang dipublikasikan.'}
               </p>
               <Link
-                href="/berita/"
+                href="/"
                 className={`${pagerBase} mt-6 border-brand-emerald bg-brand-emerald text-surface-white hover:bg-brand-emerald-hover`}
               >
-                Kembali ke halaman pertama
+                Kembali ke Beranda
               </Link>
             </div>
           ) : (

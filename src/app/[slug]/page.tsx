@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getPostBySlug, getAllPostSlugs } from '@/lib/wordpress/api';
-import { extractFirstImage, stripHtml, formatIndonesianDate } from '@/lib/wordpress/extract';
-import { siteConfig } from '@/config/site';
+import { extractFirstImage, formatIndonesianDate } from '@/lib/wordpress/extract';
+import { buildArticleMetadata, getPostAuthorName, getPostTitle } from '@/lib/seo/metadata';
+import { articleSchema, siteGraph } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import StarMark from '@/components/ui/StarMark';
 
@@ -25,57 +27,10 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const post = await getPostBySlug(slug);
 
   if (!post || post.status !== 'publish') {
-    return {
-      title: 'Artikel Tidak Ditemukan',
-    };
+    return { title: 'Artikel Tidak Ditemukan', robots: { index: false, follow: false } };
   }
 
-  const cleanTitle = stripHtml(post.title.rendered);
-  const cleanExcerpt = stripHtml(post.excerpt.rendered || post.content.rendered).slice(0, 160);
-  const canonicalUrl = `${siteConfig.url}/${post.slug}/`;
-  const postImage = extractFirstImage(post.content.rendered);
-
-  // Jika Yoast SEO meta tersedia
-  if (post.yoast_head_json) {
-    const yoast = post.yoast_head_json;
-    return {
-      title: yoast.title || cleanTitle,
-      description: yoast.description || cleanExcerpt,
-      alternates: {
-        canonical: canonicalUrl,
-      },
-      openGraph: {
-        type: 'article',
-        title: yoast.og_title || cleanTitle,
-        description: yoast.og_description || cleanExcerpt,
-        url: canonicalUrl,
-        publishedTime: post.date,
-        modifiedTime: post.modified,
-        images: yoast.og_image
-          ? yoast.og_image.map((img) => ({ url: img.url }))
-          : postImage
-          ? [{ url: postImage }]
-          : undefined,
-      },
-    };
-  }
-
-  return {
-    title: cleanTitle,
-    description: cleanExcerpt,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    openGraph: {
-      type: 'article',
-      title: cleanTitle,
-      description: cleanExcerpt,
-      url: canonicalUrl,
-      publishedTime: post.date,
-      modifiedTime: post.modified,
-      images: postImage ? [{ url: postImage }] : undefined,
-    },
-  };
+  return buildArticleMetadata(post);
 }
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
@@ -86,13 +41,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
-  const cleanTitle = stripHtml(post.title.rendered);
+  const cleanTitle = getPostTitle(post);
   const postDate = formatIndonesianDate(post.date);
-  const authorName = post._embedded?.author?.[0]?.name || 'Admin SMP Inshafuddin';
+  const authorName = getPostAuthorName(post) || 'Admin SMP Inshafuddin';
   const mainImage = extractFirstImage(post.content.rendered);
 
   return (
     <article className="pb-16 lg:pb-24">
+      <JsonLd data={siteGraph(articleSchema(post))} />
       <header className="border-b border-divider bg-surface-sand">
         <div className="mx-auto max-w-3xl px-4 pb-10 pt-8 sm:px-6 lg:pb-14 lg:pt-10">
           <Breadcrumb items={[{ label: 'Berita', href: '/berita/' }, { label: cleanTitle }]} />

@@ -1,20 +1,16 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { siteConfig } from '@/config/site';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { PAGE_SEO } from '@/lib/seo/pages';
+import { siteGraph, webPageSchema } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import MediaCard from '@/components/ui/MediaCard';
 import SectionHeading from '@/components/ui/SectionHeading';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Ekstrakurikuler & Kegiatan Siswa',
-  description:
-    'Kegiatan ekstrakurikuler di SMP Inshafuddin Banda Aceh: Pramuka, Sanggar Seni Tari, dan Olahraga untuk mengasah potensi dan kepribadian siswa.',
-  alternates: {
-    canonical: `${siteConfig.url}/ekstrakurikuler/`,
-  },
-};
+export const metadata: Metadata = buildPageMetadata(PAGE_SEO.ekstrakurikuler);
 
 export default function EkstrakurikulerPage() {
   const activities = [
@@ -62,6 +58,15 @@ export default function EkstrakurikulerPage() {
 
   return (
     <>
+      <JsonLd
+        data={siteGraph(
+          webPageSchema({
+            path: PAGE_SEO.ekstrakurikuler.path,
+            name: PAGE_SEO.ekstrakurikuler.title,
+            description: PAGE_SEO.ekstrakurikuler.description,
+          }),
+        )}
+      />
       <PageHero
         eyebrow="Kehidupan Siswa"
         title="Ekstrakurikuler & Kehidupan Siswa"

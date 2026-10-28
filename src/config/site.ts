@@ -1,3 +1,5 @@
+import { SITE_URL } from '@/lib/seo/config';
+
 export interface NavItem {
   label: string;
   href: string;
@@ -7,7 +9,7 @@ export const siteConfig = {
   name: 'SMP Inshafuddin Banda Aceh',
   shortName: 'SMP Inshafuddin',
   tagline: 'Membangun Generasi Berkarakter, Unggul Prestasi, dan Berakhlak Mulia',
-  url: 'https://www.smpinshafuddin.sch.id',
+  url: SITE_URL,
   logo: {
     url: 'https://www.smpinshafuddin.sch.id/wp-content/uploads/2023/02/logo.png',
     width: 199,

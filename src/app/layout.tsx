@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { siteConfig } from '@/config/site';
+import { DEFAULT_OG_IMAGE, SITE_LOCALE, SITE_NAME, SITE_SHORT_NAME, SITE_URL } from '@/lib/seo/config';
+import { buildRobots } from '@/lib/seo/metadata';
+import { HOME_DESCRIPTION, HOME_TITLE } from '@/lib/seo/pages';
 import './globals.css';
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -19,36 +21,27 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: `${siteConfig.name} — Membangun Ilmu & Akhlak`,
-    template: `%s | ${siteConfig.name}`,
+    default: HOME_TITLE,
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
-  description:
-    'Website resmi SMP Inshafuddin Banda Aceh. Lembaga pendidikan Islam terpadu yang memadukan kurikulum nasional dan nilai-nilai dayah dalam membentuk karakter unggul dan religius.',
+  description: HOME_DESCRIPTION,
+  applicationName: SITE_NAME,
+  robots: buildRobots(),
   openGraph: {
     type: 'website',
-    locale: 'id_ID',
-    url: siteConfig.url,
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} — Membangun Ilmu & Akhlak`,
-    description:
-      'Lembaga pendidikan Islam terpadu yang memadukan kurikulum nasional dan nilai-nilai dayah dalam membentuk karakter unggul dan religius.',
-    images: [
-      {
-        url: siteConfig.logo.url,
-        width: 199,
-        height: 73,
-        alt: siteConfig.name,
-      },
-    ],
+    locale: SITE_LOCALE,
+    siteName: SITE_NAME,
+    images: [DEFAULT_OG_IMAGE],
   },
-  alternates: {
-    canonical: siteConfig.url,
+  twitter: {
+    card: 'summary_large_image',
   },
-  robots: {
-    index: true,
-    follow: true,
+  formatDetection: {
+    telephone: false,
+    email: false,
+    address: false,
   },
 };
 
