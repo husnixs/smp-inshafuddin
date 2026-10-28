@@ -66,7 +66,7 @@ export default function OverviewSection() {
                 className="absolute -top-px left-0 h-0.5 w-12 bg-brand-gold transition-all duration-500 ease-out-expo group-hover:w-24 md:left-8 md:group-first:left-0"
               />
               <div className="flex items-center justify-between">
-                <span className="flex h-12 w-12 items-center justify-center rounded-control bg-surface-sage text-brand-emerald transition-colors duration-300 group-hover:bg-brand-emerald group-hover:text-brand-gold-light">
+                <span className="arch-top-sm flex h-14 w-12 items-end justify-center bg-surface-sage pb-2.5 text-brand-emerald transition-colors duration-300 group-hover:bg-brand-emerald group-hover:text-brand-gold-light">
                   {pillar.icon}
                 </span>
                 <span aria-hidden="true" className="font-display text-4xl font-semibold text-brand-gold/60">
