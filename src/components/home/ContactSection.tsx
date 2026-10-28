@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 import { siteConfig } from '@/config/site';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ButtonLink from '@/components/ui/ButtonLink';
-import GirihPattern from '@/components/ui/GirihPattern';
 
 const MAPS_LINK = 'https://maps.google.com/maps?q=SMP%20Inshafuddin%2C%20Banda%20Aceh';
 
@@ -42,7 +41,6 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 overflow-hidden rounded-hero shadow-lift lg:grid-cols-12">
           <div className="relative isolate flex flex-col bg-brand-emerald-deep p-8 sm:p-10 lg:col-span-5">
-            <GirihPattern className="text-brand-gold/[0.08]" />
             <div className="relative space-y-7">
               <ContactItem
                 title="Alamat Sekolah"
