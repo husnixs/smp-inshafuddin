@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { siteConfig } from '@/config/site';
+import DesktopNav from './DesktopNav';
 import MobileNav from './MobileNav';
 
 export default function Header() {
@@ -51,17 +52,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav aria-label="Navigasi Utama" className="hidden md:flex items-center gap-1 lg:gap-2">
-            {siteConfig.navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-ink-primary hover:text-brand-emerald hover:bg-surface-sage/60 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald min-h-[44px] flex items-center"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <DesktopNav />
 
           {/* Mobile Nav Button */}
           <MobileNav />
