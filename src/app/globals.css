@@ -49,6 +49,16 @@ body {
     border-radius: 160px 160px 10px 10px;
   }
 
+  /* Gradient di belakang teks kartu bergambar: pekat di area teks, memudar 6rem di atasnya */
+  .media-scrim {
+    background: linear-gradient(
+      to top,
+      theme('colors.brand.emerald-deep') 0%,
+      theme('colors.brand.emerald-deep / 92%') calc(100% - 6rem),
+      theme('colors.brand.emerald-deep / 0%') 100%
+    );
+  }
+
   /* Ceruk lengkung kecil untuk ikon */
   .arch-top-sm {
     border-radius: 9999px 9999px 4px 4px;

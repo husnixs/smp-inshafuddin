@@ -1,5 +1,6 @@
 import SectionHeading from '@/components/ui/SectionHeading';
 import ArrowLink from '@/components/ui/ArrowLink';
+import GirihPattern from '@/components/ui/GirihPattern';
 
 interface Program {
   badge: string;
@@ -44,10 +45,11 @@ function ProgramPanel({ program }: { program: Program }) {
 
   return (
     <article
-      className={`relative isolate flex flex-col arch-top px-8 pb-8 pt-16 sm:px-10 sm:pb-10 ${
+      className={`relative isolate flex flex-col overflow-hidden rounded-hero p-8 sm:p-10 ${
         isDark ? 'bg-brand-emerald text-ink-on-dark shadow-lift' : 'card-surface'
       }`}
     >
+      {isDark && <GirihPattern className="text-brand-gold/[0.14]" />}
       <div className="relative flex flex-1 flex-col">
         <span
           className={`inline-flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ${

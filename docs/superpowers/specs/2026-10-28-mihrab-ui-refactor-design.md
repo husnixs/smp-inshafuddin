@@ -125,3 +125,14 @@ Catatan: proyek belum memiliki test runner. Penambahan unit/E2E test (Playwright
 - Perubahan konten, copy, route, metadata SEO, atau adapter WordPress.
 - Aset foto baru, logo baru, perubahan palet.
 - Transisi section berbentuk lengkung (opsi C).
+
+## 9. Revisi pemilik (29 Oktober 2026)
+
+Lengkung dihapus di bagian yang memotong gambar atau tidak diinginkan:
+
+- **Hero beranda:** foto kembali persegi (`rounded-hero`, rasio 4:3 / 16:11, bingkai emas offset) agar foto tidak terpotong. `MihrabFrame` tidak dipakai di hero.
+- **Dua program pembelajaran:** box kembali ke bentuk semula (`rounded-hero`, `p-8 sm:p-10`, girih pada panel Dayah).
+- **`MediaCard` (fasilitas, ekstrakurikuler):** tanpa lengkung. Gambar memenuhi kartu, teks (label, judul, deskripsi) di atas gambar dengan gradient emerald (`.media-scrim`) yang menempel pada blok teks.
+- **`/akademik/`:** tanpa lengkung; panel Kurikulum Nasional dan Dayah kembali `rounded-hero`/`card-surface`, girih pada panel Dayah.
+
+Girih kini dipakai di Footer, PageHero, panel Dayah beranda, dan panel Dayah `/akademik/`.

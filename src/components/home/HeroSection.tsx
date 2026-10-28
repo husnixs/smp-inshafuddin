@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import ButtonLink from '@/components/ui/ButtonLink';
-import MihrabFrame from '@/components/ui/MihrabFrame';
 
 interface HeroSectionProps {
   heroImageUrl?: string;
@@ -69,19 +68,20 @@ export default function HeroSection({ heroImageUrl }: HeroSectionProps) {
           </div>
 
           <div className="relative lg:col-span-7 lg:pl-6">
-            <MihrabFrame
-              outline
-              className="mx-auto aspect-[4/5] w-full max-w-[22rem] sm:max-w-md lg:max-w-[30rem]"
-            >
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 translate-x-3 translate-y-3 rounded-hero border border-brand-gold/60 sm:-inset-4 sm:translate-x-4 sm:translate-y-4"
+            />
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-hero bg-surface-sage shadow-lift sm:aspect-[16/11]">
               <Image
                 src={displayImage}
                 alt="Lingkungan dan suasana SMP Inshafuddin Banda Aceh"
                 fill
                 priority
-                sizes="(max-width: 640px) 352px, (max-width: 1024px) 448px, 480px"
+                sizes="(max-width: 1024px) 100vw, 720px"
                 className="object-cover object-center"
               />
-            </MihrabFrame>
+            </div>
           </div>
         </div>
       </div>

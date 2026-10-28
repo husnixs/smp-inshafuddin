@@ -6,6 +6,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ArchDivider from '@/components/ui/ArchDivider';
+import GirihPattern from '@/components/ui/GirihPattern';
 
 export const revalidate = 3600;
 
@@ -71,7 +72,7 @@ export default function AkademikPage() {
       {/* Landasan kurikulum */}
       <section aria-label="Landasan kurikulum" className="bg-surface-white py-16 lg:py-24">
         <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2 lg:gap-8 lg:px-8">
-          <article className="card-surface arch-top px-8 pb-8 pt-14 sm:px-10 sm:pb-10 sm:pt-16">
+          <article className="card-surface p-8 sm:p-10">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
               <ArchDivider className="h-3 w-10 text-brand-gold" />
               Standar Nasional
@@ -84,7 +85,8 @@ export default function AkademikPage() {
             </p>
           </article>
 
-          <article className="arch-top relative bg-brand-emerald px-8 pb-8 pt-14 text-ink-on-dark shadow-lift sm:px-10 sm:pb-10 sm:pt-16">
+          <article className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-8 text-ink-on-dark shadow-lift sm:p-10">
+            <GirihPattern className="text-brand-gold/[0.14]" />
             <div className="relative">
               <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
                 <ArchDivider className="h-3 w-10 text-brand-gold" />
