@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%">
+  <defs>
+    <linearGradient id="artBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FBF4EA"/>
+      <stop offset="100%" stop-color="#FAF9F6"/>
+    </linearGradient>
+    <linearGradient id="curtainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#103F35"/>
+      <stop offset="100%" stop-color="#1B5E4F"/>
+    </linearGradient>
+    <linearGradient id="goldDress" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5C452"/>
+      <stop offset="100%" stop-color="#D4991A"/>
+    </linearGradient>
+    <linearGradient id="emeraldDress" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A614A"/>
+      <stop offset="100%" stop-color="#0E4131"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="400" height="260" rx="16" fill="url(#artBg)"/>
+
+  <!-- Stage Curtains / Islamic Arch Decor -->
+  <path d="M0 0 Q60 50 0 110 L0 0 Z" fill="url(#curtainGrad)"/>
+  <path d="M400 0 Q340 50 400 110 L400 0 Z" fill="url(#curtainGrad)"/>
+  <!-- Gold Curtain Border -->
+  <path d="M0 0 Q60 50 0 110" stroke="#BC9954" stroke-width="3" fill="none"/>
+  <path d="M400 0 Q340 50 400 110" stroke="#BC9954" stroke-width="3" fill="none"/>
+
+  <!-- Stage Floor -->
+  <path d="M0 215 Q200 205 400 215 L400 260 L0 260 Z" fill="#E4D3BC"/>
+  <line x1="0" y1="216" x2="400" y2="216" stroke="#C4AD91" stroke-width="2"/>
+
+  <!-- Floating Musical & Art Notes -->
+  <g fill="#BC9954" opacity="0.75">
+    <!-- Music note 1 -->
+    <path d="M70 70 L70 50 L90 45 L90 65 A6 6 0 1 1 78 68 L78 52 L85 50 L85 64 A6 6 0 1 1 73 66 Z"/>
+    <!-- Sparkles -->
+    <path d="M330 60 Q335 60 335 55 Q335 60 340 60 Q335 60 335 65 Q335 60 330 60 Z"/>
+    <path d="M120 45 Q123 45 123 42 Q123 45 126 45 Q123 45 123 48 Q123 45 120 45 Z"/>
+    <path d="M290 85 Q293 85 293 82 Q293 85 296 85 Q293 85 293 88 Q293 85 290 85 Z"/>
+  </g>
+
+  <!-- Left Side: Calligraphy Easel & Art Palette -->
+  <g transform="translate(45, 110)">
+    <!-- Wooden Easel Stand -->
+    <line x1="20" y1="120" x2="45" y2="25" stroke="#8D6E63" stroke-width="4" stroke-linecap="round"/>
+    <line x1="70" y1="120" x2="45" y2="25" stroke="#8D6E63" stroke-width="4" stroke-linecap="round"/>
+    <line x1="45" y1="30" x2="45" y2="120" stroke="#6D4C41" stroke-width="3" stroke-linecap="round"/>
+    <!-- Canvas Board -->
+    <rect x="15" y="30" width="60" height="50" rx="4" fill="#FFFFFF" stroke="#D7CCC8" stroke-width="3"/>
+    <!-- Calligraphy Arabic Letter Design ("Alif & Ba") -->
+    <path d="M30 42 L30 65" stroke="#103F35" stroke-width="3" stroke-linecap="round"/>
+    <path d="M58 55 Q50 68 38 65" stroke="#103F35" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    <circle cx="48" cy="70" r="1.5" fill="#103F35"/>
+
+    <!-- Painter's Palette on Floor -->
+    <ellipse cx="78" cy="115" rx="16" ry="10" fill="#D7CCC8"/>
+    <circle cx="70" cy="113" r="2.5" fill="#D32F2F"/>
+    <circle cx="77" cy="110" r="2.5" fill="#FFC107"/>
+    <circle cx="84" cy="112" r="2.5" fill="#1B5E4F"/>
+    <circle cx="78" cy="118" r="2.5" fill="#1976D2"/>
+    <!-- Paintbrush / Qalam -->
+    <line x1="68" y1="122" x2="90" y2="105" stroke="#5D4037" stroke-width="2" stroke-linecap="round"/>
+    <path d="M90 105 L93 103" stroke="#BC9954" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right Side: Traditional Acehnese Rapai / Tambourine Drum -->
+  <g transform="translate(305, 155)">
+    <ellipse cx="25" cy="50" rx="22" ry="14" fill="#6D4C41"/>
+    <ellipse cx="25" cy="46" rx="20" ry="12" fill="#FAF0D7" stroke="#BC9954" stroke-width="2"/>
+    <path d="M5 46 Q25 65 45 46 L45 60 Q25 80 5 60 Z" fill="#8D6E63"/>
+    <!-- Musical accent -->
+    <path d="M30 25 Q35 15 42 22" stroke="#BC9954" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Center Cartoon Character: Acehnese Traditional Dancer Student -->
+  <g transform="translate(165, 55)">
+    <!-- Traditional Acehnese Headdress (Tengkuluk / Mahkota Tari dengan Ornamen Bunga) -->
+    <path d="M12 40 Q35 10 58 40 Z" fill="url(#goldDress)"/>
+    <!-- Crown ornaments -->
+    <circle cx="35" cy="15" r="4.5" fill="#D32F2F"/>
+    <circle cx="23" cy="22" r="3.5" fill="#FFD54F"/>
+    <circle cx="47" cy="22" r="3.5" fill="#FFD54F"/>
+    <!-- Hijab / Kerudung Hitam-Emas Santun -->
+    <ellipse cx="35" cy="50" rx="23" ry="24" fill="#192B27"/>
+
+    <!-- Face -->
+    <circle cx="35" cy="52" r="16" fill="#FFE0B2"/>
+    <!-- Cheerful Eyes -->
+    <path d="M26 50 Q29 46 32 50" stroke="#212121" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <path d="M38 50 Q41 46 44 50" stroke="#212121" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    <!-- Blushing Cheeks -->
+    <ellipse cx="25" cy="56" rx="3.5" ry="2" fill="#FF8A80" opacity="0.7"/>
+    <ellipse cx="45" cy="56" rx="3.5" ry="2" fill="#FF8A80" opacity="0.7"/>
+    <!-- Sweet Smile -->
+    <path d="M31 58 Q35 63 39 58" stroke="#C2185B" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    <!-- Traditional Dress (Baju Adat Tari Tradisional) -->
+    <path d="M16 72 L54 72 L62 135 L8 135 Z" fill="url(#emeraldDress)"/>
+    <!-- Songket Sash / Selempang Emas Khas Aceh -->
+    <polygon points="20,72 32,72 58,135 46,135" fill="url(#goldDress)"/>
+    <line x1="20" y1="72" x2="46" y2="135" stroke="#BC7B22" stroke-width="1.5"/>
+    <line x1="32" y1="72" x2="58" y2="135" stroke="#BC7B22" stroke-width="1.5"/>
+
+    <!-- Gold Waist Belt (Pending Emas) -->
+    <rect x="18" y="98" width="34" height="7" fill="#FFD54F" rx="2"/>
+    <circle cx="35" cy="101.5" r="4" fill="#D32F2F"/>
+
+    <!-- Traditional Skirt (Kain Songket Bawah) -->
+    <path d="M10 135 L60 135 L68 185 L2 185 Z" fill="#880E4F"/>
+    <!-- Gold Border on Skirt -->
+    <line x1="2" y1="180" x2="68" y2="180" stroke="#FFD54F" stroke-width="3"/>
+
+    <!-- Slippers / Shoes -->
+    <ellipse cx="25" cy="188" rx="8" ry="4" fill="#FFD54F"/>
+    <ellipse cx="45" cy="188" rx="8" ry="4" fill="#FFD54F"/>
+
+    <!-- Graceful Dance Pose Arms -->
+    <!-- Left Arm Curved Gracefully Holding Dance Fan (Kipas Tari Emas) -->
+    <path d="M16 75 L-6 90 L-10 75" stroke="#0E4131" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="-10" cy="74" r="4.5" fill="#FFE0B2"/>
+    <!-- Traditional Dance Fan (Kipas Tari) -->
+    <path d="M-22 55 Q-10 40 2 55 L-10 74 Z" fill="url(#goldDress)" stroke="#B78103" stroke-width="1.5"/>
+    <line x1="-10" y1="74" x2="-20" y2="58" stroke="#B78103" stroke-width="1"/>
+    <line x1="-10" y1="74" x2="-10" y2="48" stroke="#B78103" stroke-width="1"/>
+    <line x1="-10" y1="74" x2="0" y2="58" stroke="#B78103" stroke-width="1"/>
+
+    <!-- Right Arm Curved Upwards (Gerakan Tari Ratoh Jaroe) -->
+    <path d="M54 75 L74 90 L80 75" stroke="#0E4131" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="80" cy="74" r="4.5" fill="#FFE0B2"/>
+    <!-- Gold Bracelet (Gelang Meugap) -->
+    <rect x="74" y="80" width="5" height="4" fill="#FFD54F" rx="1"/>
+  </g>
+</svg>

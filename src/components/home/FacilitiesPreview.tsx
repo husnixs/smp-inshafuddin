@@ -1,21 +1,28 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function FacilitiesPreview() {
   const facilities = [
     {
-      title: 'Ruang Kelas Pembelajaran',
+      title: 'Ruang Pembelajaran',
+      image: '/images/ruang-pembelajaran.webp',
+      alt: 'Fasilitas Ruang Pembelajaran SMP Inshafuddin',
       description:
         'Ruang belajar yang nyaman dan kondusif untuk mendukung proses kegiatan belajar mengajar tatap muka secara efektif dan interaktif.',
       tag: 'Sarana Belajar',
     },
     {
-      title: 'Laboratorium Komputer & Bahasa',
+      title: 'Lab Komputer',
+      image: '/images/lab-komputer.webp',
+      alt: 'Fasilitas Laboratorium Komputer SMP Inshafuddin',
       description:
         'Fasilitas praktikum teknologi informasi ber-AC yang terkoneksi internet serta sarana lab bahasa untuk pengembangan bahasa Arab dan Inggris.',
       tag: 'Praktikum & TI',
     },
     {
-      title: 'Perpustakaan & Laboratorium IPA',
+      title: 'Perpustakaan',
+      image: '/images/perpustakaan.webp',
+      alt: 'Fasilitas Perpustakaan Sekolah SMP Inshafuddin',
       description:
         'Koleksi lengkap buku pelajaran, referensi umum, dan kitab-kitab penunjang, didukung lab sains untuk eksperimen biologi dan fisika.',
       tag: 'Pustaka & Sains',
@@ -49,20 +56,32 @@ export default function FacilitiesPreview() {
           {facilities.map((fac) => (
             <div
               key={fac.title}
-              className="bg-surface-white p-6 sm:p-8 rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between"
+              className="bg-surface-white rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-4">
-                  {fac.tag}
-                </span>
-                <h3 className="text-lg font-bold text-ink-primary mb-3">
-                  {fac.title}
-                </h3>
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {fac.description}
-                </p>
+                <div className="relative aspect-[16/10] w-full bg-surface-sage overflow-hidden border-b border-divider">
+                  <Image
+                    src={fac.image}
+                    alt={fac.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="p-6">
+                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
+                    {fac.tag}
+                  </span>
+                  <h3 className="text-lg font-bold text-ink-primary mb-2">
+                    {fac.title}
+                  </h3>
+                  <p className="text-sm text-ink-muted leading-relaxed">
+                    {fac.description}
+                  </p>
+                </div>
               </div>
-              <div className="pt-6 mt-4 border-t border-divider/60">
+              <div className="p-6 pt-0 border-t border-divider/60 mt-4">
                 <Link
                   href="/fasilitas/"
                   className="text-xs font-semibold text-brand-emerald hover:underline"

@@ -20,16 +20,22 @@ export default function EkstrakurikulerPage() {
       title: 'Gerakan Pramuka',
       desc: 'Kegiatan kepramukaan di SMP Inshafuddin Banda Aceh merupakan salah satu wadah utama untuk mengasah keterampilan fisik, intelektual, emosional, dan sosial siswa. Menanamkan kemandirian, kepemimpinan, gotong royong, dan cinta alam berjiwa Islami.',
       tag: 'Karakter & Kepanduan',
+      image: '/images/ekskul/pramuka-kartun.svg',
+      alt: 'Ilustrasi Kartun Kegiatan Pramuka SMP Inshafuddin',
     },
     {
       title: 'Sanggar Seni Tari Tradisional & Kaligrafi',
       desc: 'Dengan tenaga pelatih profesional, kami melatih siswa dalam olah seni tari tradisional Aceh, kaligrafi Islam, dan drama pentas seni. Kami menyelenggarakan pagelaran untuk mendorong rasa percaya diri siswa dalam melestarikan budaya lokal yang selaras dengan syariat.',
       tag: 'Seni & Budaya',
+      image: '/images/ekskul/seni-kartun.svg',
+      alt: 'Ilustrasi Kartun Seni Tari Tradisional dan Kaligrafi Islam',
     },
     {
       title: 'Olahraga & Atletik (Sepak Bola)',
       desc: 'Memberi ruang bagi siswa dalam menyalurkan potensi, minat, dan bakat di bidang kebugaran jasmani. Sepak bola, futsal, dan cabang atletik dibina secara rutin untuk menumbuhkan sportivitas dan kekompakan tim.',
       tag: 'Jasmani & Sportivitas',
+      image: '/images/ekskul/olahraga-kartun.svg',
+      alt: 'Ilustrasi Kartun Olahraga Sepak Bola Siswa SMP Inshafuddin',
     },
   ];
 
@@ -76,23 +82,36 @@ export default function EkstrakurikulerPage() {
           </p>
         </div>
 
-        {/* 3 Ekstrakurikuler Utama */}
+        {/* 3 Ekstrakurikuler Utama dengan Ilustrasi Kartun Sample */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {activities.map((a) => (
             <div
               key={a.title}
-              className="bg-surface-white p-6 sm:p-8 rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between"
+              className="bg-surface-white rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-lg flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-4">
-                  {a.tag}
-                </span>
-                <h2 className="text-xl font-bold text-brand-emerald mb-3">
-                  {a.title}
-                </h2>
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {a.desc}
-                </p>
+                {/* Ilustrasi Kartun Sample */}
+                <div className="relative aspect-[16/10] w-full bg-surface-sage overflow-hidden border-b border-divider">
+                  <Image
+                    src={a.image}
+                    alt={a.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="p-6 sm:p-8">
+                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
+                    {a.tag}
+                  </span>
+                  <h2 className="text-xl font-bold text-brand-emerald mb-3">
+                    {a.title}
+                  </h2>
+                  <p className="text-sm text-ink-muted leading-relaxed">
+                    {a.desc}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

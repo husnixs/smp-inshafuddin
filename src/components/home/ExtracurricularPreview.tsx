@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ExtracurricularPreview() {
   const activities = [
@@ -7,18 +8,24 @@ export default function ExtracurricularPreview() {
       description:
         'Mengasah keterampilan fisik, intelektual, emosional, kemandirian, dan kepemimpinan sosial siswa melalui kepanduan berjiwa Islami.',
       tag: 'Karakter & Disiplin',
+      image: '/images/ekskul/pramuka-kartun.svg',
+      alt: 'Ilustrasi Kartun Kegiatan Pramuka',
     },
     {
       title: 'Sanggar Seni Tari & Kaligrafi',
       description:
         'Mengembangkan minat dan bakat seni tradisi Aceh dan Islam, drama, serta seni kaligrafi Arab dengan pembimbing profesional.',
       tag: 'Seni & Budaya',
+      image: '/images/ekskul/seni-kartun.svg',
+      alt: 'Ilustrasi Kartun Seni Tari & Kaligrafi',
     },
     {
       title: 'Olahraga (Sepak Bola & Futsal)',
       description:
         'Wadah pembinaan bakat olahraga, kesehatan jasmani, kerja sama tim, dan sportivitas siswa di lapangan olahraga sekolah.',
       tag: 'Jasmani & Prestasi',
+      image: '/images/ekskul/olahraga-kartun.svg',
+      alt: 'Ilustrasi Kartun Olahraga Sepak Bola',
     },
   ];
 
@@ -49,20 +56,32 @@ export default function ExtracurricularPreview() {
           {activities.map((act) => (
             <div
               key={act.title}
-              className="bg-surface-ivory p-6 sm:p-8 rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between"
+              className="bg-surface-ivory rounded-card border border-divider hover:border-brand-emerald/40 transition-all hover:shadow-md flex flex-col justify-between overflow-hidden group"
             >
               <div>
-                <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-4">
-                  {act.tag}
-                </span>
-                <h3 className="text-lg font-bold text-ink-primary mb-3">
-                  {act.title}
-                </h3>
-                <p className="text-sm text-ink-muted leading-relaxed">
-                  {act.description}
-                </p>
+                <div className="relative aspect-[16/10] w-full bg-surface-sage overflow-hidden border-b border-divider">
+                  <Image
+                    src={act.image}
+                    alt={act.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 380px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="p-6">
+                  <span className="inline-block px-2.5 py-1 rounded bg-surface-sage text-brand-emerald text-xs font-semibold mb-3">
+                    {act.tag}
+                  </span>
+                  <h3 className="text-lg font-bold text-ink-primary mb-2">
+                    {act.title}
+                  </h3>
+                  <p className="text-sm text-ink-muted leading-relaxed">
+                    {act.description}
+                  </p>
+                </div>
               </div>
-              <div className="pt-6 mt-4 border-t border-divider/60">
+              <div className="p-6 pt-0 border-t border-divider/60 mt-4">
                 <Link
                   href="/ekstrakurikuler/"
                   className="text-xs font-semibold text-brand-emerald hover:underline"

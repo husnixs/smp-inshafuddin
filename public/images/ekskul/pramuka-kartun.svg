@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2F1EA"/>
+      <stop offset="100%" stop-color="#FAF9F6"/>
+    </linearGradient>
+    <linearGradient id="hillGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8DBBA6"/>
+      <stop offset="100%" stop-color="#6FA48C"/>
+    </linearGradient>
+    <linearGradient id="hillGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#498B71"/>
+      <stop offset="100%" stop-color="#2D6A53"/>
+    </linearGradient>
+    <linearGradient id="tentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAA647"/>
+      <stop offset="100%" stop-color="#BC7B22"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="400" height="260" rx="16" fill="url(#skyGrad)"/>
+
+  <!-- Sun & Clouds -->
+  <circle cx="330" cy="55" r="28" fill="#F8DF8A" opacity="0.85"/>
+  <path d="M70 48 Q85 36 100 48 Q115 36 130 48 Q140 58 125 65 Q70 65 70 48 Z" fill="#FFFFFF" opacity="0.8"/>
+  <path d="M220 40 Q232 30 245 40 Q258 30 270 40 Q278 50 268 56 Q220 56 220 40 Z" fill="#FFFFFF" opacity="0.7"/>
+
+  <!-- Distant Mountains -->
+  <path d="M-20 180 Q60 90 140 170 T300 160 T420 180 L420 260 L-20 260 Z" fill="url(#hillGrad1)" opacity="0.5"/>
+  <path d="M40 200 Q140 120 240 190 T420 180 L420 260 L40 260 Z" fill="url(#hillGrad2)" opacity="0.7"/>
+
+  <!-- Ground -->
+  <path d="M-10 215 Q100 195 210 215 T410 205 L410 260 L-10 260 Z" fill="#3B7D63"/>
+
+  <!-- Trees -->
+  <polygon points="45,195 30,225 60,225" fill="#1C543E"/>
+  <polygon points="45,180 34,205 56,205" fill="#246A4F"/>
+  <polygon points="75,200 62,225 88,225" fill="#1C543E"/>
+  <polygon points="340,195 325,225 355,225" fill="#1C543E"/>
+  <polygon points="365,190 352,220 378,220" fill="#246A4F"/>
+
+  <!-- Scout Camping Tent -->
+  <polygon points="90,165 50,228 130,228" fill="url(#tentGrad)"/>
+  <polygon points="90,165 75,228 105,228" fill="#8C5010"/>
+  <polygon points="90,165 105,228 130,228" fill="#D48E28"/>
+  <line x1="90" y1="165" x2="90" y2="228" stroke="#683908" stroke-width="2"/>
+  <line x1="50" y1="228" x2="35" y2="238" stroke="#BC7B22" stroke-width="2"/>
+  <line x1="130" y1="228" x2="145" y2="238" stroke="#BC7B22" stroke-width="2"/>
+
+  <!-- Campfire -->
+  <!-- Logs -->
+  <line x1="140" y1="230" x2="165" y2="222" stroke="#5C3317" stroke-width="5" stroke-linecap="round"/>
+  <line x1="165" y1="230" x2="140" y2="222" stroke="#4A2810" stroke-width="5" stroke-linecap="round"/>
+  <!-- Flames -->
+  <path d="M152 224 Q146 210 152 200 Q158 208 162 215 Q156 222 152 224 Z" fill="#F4511E"/>
+  <path d="M152 222 Q149 214 153 208 Q156 213 158 217 Q155 221 152 222 Z" fill="#FFB300"/>
+
+  <!-- Cartoon Scout Character (Friendly Indonesian Scout) -->
+  <g transform="translate(230, 95)">
+    <!-- Backpack -->
+    <rect x="52" y="55" width="22" height="42" rx="7" fill="#795548"/>
+    <rect x="56" y="65" width="16" height="20" rx="4" fill="#5D4037"/>
+
+    <!-- Body / Scout Uniform -->
+    <path d="M10 52 L55 52 L52 105 L12 105 Z" fill="#A17445"/> <!-- Coklat Pramuka -->
+    <!-- Belt -->
+    <rect x="11" y="98" width="42" height="7" fill="#3E2723"/>
+    <rect x="27" y="96" width="10" height="11" fill="#FFC107" rx="2"/>
+
+    <!-- Red-and-White Scout Neckerchief (Kacu / Hasduk Pramuka) -->
+    <polygon points="12,52 32,78 24,52" fill="#D32F2F"/>
+    <polygon points="53,52 32,78 40,52" fill="#D32F2F"/>
+    <polygon points="18,52 32,76 27,52" fill="#FFFFFF"/>
+    <polygon points="46,52 32,76 37,52" fill="#FFFFFF"/>
+    <!-- Ring Hasduk (WOSM Ring) -->
+    <rect x="28" y="74" width="8" height="6" fill="#8D6E63" rx="2"/>
+
+    <!-- Legs & Shorts -->
+    <rect x="14" y="105" width="16" height="20" fill="#6D4C2B"/>
+    <rect x="34" y="105" width="16" height="20" fill="#6D4C2B"/>
+    <!-- Legs (Skin) -->
+    <rect x="18" y="123" width="9" height="12" fill="#FFCC80"/>
+    <rect x="37" y="123" width="9" height="12" fill="#FFCC80"/>
+    <!-- Socks -->
+    <rect x="17" y="130" width="11" height="12" fill="#3E2723"/>
+    <rect x="36" y="130" width="11" height="12" fill="#3E2723"/>
+    <!-- Shoes -->
+    <ellipse cx="20" cy="142" rx="9" ry="5" fill="#212121"/>
+    <ellipse cx="43" cy="142" rx="9" ry="5" fill="#212121"/>
+
+    <!-- Head -->
+    <circle cx="32" cy="30" r="20" fill="#FFCC80"/>
+    <!-- Hair -->
+    <path d="M14 24 Q32 10 50 24 Q38 14 20 20 Z" fill="#263238"/>
+    <!-- Friendly Eyes -->
+    <ellipse cx="26" cy="28" rx="2.5" ry="3.5" fill="#212121"/>
+    <ellipse cx="40" cy="28" rx="2.5" ry="3.5" fill="#212121"/>
+    <circle cx="27" cy="27" r="1" fill="#FFFFFF"/>
+    <circle cx="41" cy="27" r="1" fill="#FFFFFF"/>
+    <!-- Blushing Cheeks -->
+    <ellipse cx="22" cy="34" rx="3" ry="1.5" fill="#FF8A80" opacity="0.6"/>
+    <ellipse cx="44" cy="34" rx="3" ry="1.5" fill="#FF8A80" opacity="0.6"/>
+    <!-- Cheerful Smile -->
+    <path d="M29 33 Q33 39 37 33" stroke="#D84315" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    <!-- Scout Beret Hat (Baret Pramuka Coklat) -->
+    <ellipse cx="32" cy="14" rx="22" ry="9" fill="#5D4037"/>
+    <path d="M12 14 Q22 0 46 10 Q54 14 50 18 Q32 10 12 14 Z" fill="#795548"/>
+    <!-- Scout Fleur-de-lis / Cikal Badge -->
+    <circle cx="22" cy="12" r="3.5" fill="#FFD54F"/>
+
+    <!-- Arms -->
+    <!-- Left Hand Saluting -->
+    <path d="M12 55 L-2 42 L10 24" stroke="#A17445" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="11" cy="23" r="5" fill="#FFCC80"/> <!-- Hand at brow -->
+
+    <!-- Right Hand Holding Scout Staff / Tongkat Pramuka -->
+    <path d="M52 55 L65 72 L62 90" stroke="#A17445" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="62" cy="90" r="5" fill="#FFCC80"/>
+    <!-- Scout Staff (Tongkat Pramuka) -->
+    <line x1="62" y1="10" x2="62" y2="145" stroke="#C8963E" stroke-width="4" stroke-linecap="round"/>
+    <line x1="60" y1="18" x2="64" y2="18" stroke="#D32F2F" stroke-width="2"/>
+    <line x1="60" y1="24" x2="64" y2="24" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+</svg>
