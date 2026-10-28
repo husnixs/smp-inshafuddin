@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { siteConfig } from '@/config/site';
 import { isNavItemActive } from '@/lib/navigation';
-import GirihPattern from '@/components/ui/GirihPattern';
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,18 +53,17 @@ export default function MobileNav() {
         </svg>
       </button>
 
-      {/* Portal ke body: backdrop-filter pada header membuat elemen fixed terkurung di dalam header */}
+      {/* Portal ke body: drawer lepas dari stacking context header sticky */}
       {isOpen &&
         createPortal(
         <div className="fixed inset-0 z-50 flex" role="dialog" aria-modal="true" aria-label="Menu navigasi">
-          <div className="fixed inset-0 bg-brand-emerald-deep/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} aria-hidden="true" />
+          <div className="fixed inset-0 bg-brand-emerald-deep/60" onClick={() => setIsOpen(false)} aria-hidden="true" />
 
           <div
             id="mobile-nav-panel"
             className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-surface-white shadow-lift"
           >
             <div className="relative overflow-hidden bg-brand-emerald-deep px-6 pb-6 pt-5">
-              <GirihPattern className="text-brand-gold/[0.15]" tileSize={44} />
               <div className="relative flex items-center justify-between">
                 <span className="font-display text-lg font-semibold text-surface-white">SMP Inshafuddin</span>
                 <button
