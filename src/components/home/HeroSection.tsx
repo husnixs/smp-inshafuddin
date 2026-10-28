@@ -25,17 +25,16 @@ export default function HeroSection({ heroImageUrl }: HeroSectionProps) {
       <div className="relative mx-auto max-w-content px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
-            <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-surface-white px-3.5 py-1.5 text-xs font-semibold text-brand-emerald shadow-card">
-              <StarMark className="h-3 w-3 text-brand-gold" />
-              SMP Inshafuddin · Banda Aceh
-            </p>
-
-            <h1
-              id="hero-heading"
-              className="font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-brand-emerald sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]"
-            >
-              Belajar dengan ilmu,{' '}
-              <span className="italic text-brand-gold-ink">tumbuh</span> dengan akhlak.
+            {/* Nama sekolah menjadi bagian H1 agar entitas utama halaman jelas bagi mesin pencari & AI. */}
+            <h1 id="hero-heading">
+              <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-surface-white px-3.5 py-1.5 font-sans text-xs font-semibold text-brand-emerald shadow-card">
+                <StarMark className="h-3 w-3 text-brand-gold" />
+                SMP Inshafuddin Banda Aceh
+                <span className="sr-only">:</span>
+              </span>
+              <span className="block font-display text-[2.5rem] font-semibold leading-[1.05] tracking-tight text-brand-emerald sm:text-6xl lg:text-[3.25rem] xl:text-[4rem]">
+                Belajar dengan ilmu, <span className="italic text-brand-gold-ink">tumbuh</span> dengan akhlak.
+              </span>
             </h1>
 
             <p className="mt-6 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg">

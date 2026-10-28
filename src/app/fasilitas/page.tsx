@@ -1,18 +1,14 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { PAGE_SEO } from '@/lib/seo/pages';
+import { siteGraph, webPageSchema } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import MediaCard from '@/components/ui/MediaCard';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Fasilitas & Sarana Prasarana',
-  description:
-    'Sarana dan prasarana penunjang kegiatan belajar mengajar di SMP Inshafuddin Banda Aceh: ruang pembelajaran, lab komputer, lab IPA, perpustakaan, dan lapangan olahraga.',
-  alternates: {
-    canonical: `${siteConfig.url}/fasilitas/`,
-  },
-};
+export const metadata: Metadata = buildPageMetadata(PAGE_SEO.fasilitas);
 
 export default function FasilitasPage() {
   const facilities = [
@@ -83,6 +79,15 @@ export default function FasilitasPage() {
 
   return (
     <>
+      <JsonLd
+        data={siteGraph(
+          webPageSchema({
+            path: PAGE_SEO.fasilitas.path,
+            name: PAGE_SEO.fasilitas.title,
+            description: PAGE_SEO.fasilitas.description,
+          }),
+        )}
+      />
       <PageHero
         eyebrow="Sarana & Prasarana"
         title="Sarana & Prasarana Sekolah"

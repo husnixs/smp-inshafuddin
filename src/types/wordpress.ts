@@ -15,6 +15,10 @@ export interface WPYoastHeadJson {
   og_site_name?: string;
   article_published_time?: string;
   article_modified_time?: string;
+  robots?: {
+    index?: 'index' | 'noindex';
+    follow?: 'follow' | 'nofollow';
+  };
   og_image?: Array<{
     url: string;
     width?: number;

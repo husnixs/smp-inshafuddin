@@ -9,23 +9,61 @@ export function extractFirstImage(html: string): string | null {
   return match ? match[1] : null;
 }
 
+const NAMED_ENTITIES: Record<string, string> = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' ',
+  ndash: '–',
+  mdash: '—',
+  hellip: '…',
+  lsquo: '‘',
+  rsquo: '’',
+  ldquo: '“',
+  rdquo: '”',
+  laquo: '«',
+  raquo: '»',
+};
+
+/** Mendekode HTML entity numerik (desimal/heksadesimal) dan entity bernama yang umum dari WordPress. */
+export function decodeHtmlEntities(text: string): string {
+  if (!text) return '';
+  return text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (match, entity: string) => {
+    if (entity[0] === '#') {
+      const isHex = entity[1].toLowerCase() === 'x';
+      const codePoint = parseInt(entity.slice(isHex ? 2 : 1), isHex ? 16 : 10);
+      return Number.isFinite(codePoint) && codePoint > 0 && codePoint <= 0x10ffff
+        ? String.fromCodePoint(codePoint)
+        : match;
+    }
+    return NAMED_ENTITIES[entity.toLowerCase()] ?? match;
+  });
+}
+
 /**
  * Membersihkan tag HTML dan entity untuk menghasilkan teks cuplikan ringkas.
  */
 export function stripHtml(html: string): string {
   if (!html) return '';
-  return html
+  const withoutTags = html
     .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&#8211;/g, '–')
-    .replace(/&#8217;/g, '’')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&quot;/g, '"')
-    .replace(/&laquo;|&raquo;/g, '')
+    .replace(/<[^>]+>/g, ' ');
+  return decodeHtmlEntities(withoutTags)
+    .replace(/\[(?:…|&hellip;|\.\.\.)\]/g, '…')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Memotong teks pada batas kata terdekat dan menambahkan elipsis bila terpotong. */
+export function truncateText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text;
+  const slice = text.slice(0, maxLength);
+  const lastSpace = slice.lastIndexOf(' ');
+  const cut = lastSpace > maxLength * 0.6 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.replace(/[\s,.;:–-]+$/, '')}…`;
 }
 
 /**

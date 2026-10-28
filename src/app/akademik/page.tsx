@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
+import { buildPageMetadata } from '@/lib/seo/metadata';
+import { PAGE_SEO } from '@/lib/seo/pages';
+import { siteGraph, webPageSchema } from '@/lib/seo/jsonld';
+import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
 import GirihPattern from '@/components/ui/GirihPattern';
@@ -7,14 +10,7 @@ import StarMark from '@/components/ui/StarMark';
 
 export const revalidate = 3600;
 
-export const metadata: Metadata = {
-  title: 'Akademik & Kurikulum',
-  description:
-    'Kurikulum terpadu SMP Inshafuddin Banda Aceh: kurikulum nasional Kementerian Pendidikan dipadukan dengan kurikulum Dayah Terpadu Inshafuddin.',
-  alternates: {
-    canonical: `${siteConfig.url}/akademik/`,
-  },
-};
+export const metadata: Metadata = buildPageMetadata(PAGE_SEO.akademik);
 
 export default function AkademikPage() {
   const academicFeatures = [
@@ -57,6 +53,15 @@ export default function AkademikPage() {
 
   return (
     <>
+      <JsonLd
+        data={siteGraph(
+          webPageSchema({
+            path: PAGE_SEO.akademik.path,
+            name: PAGE_SEO.akademik.title,
+            description: PAGE_SEO.akademik.description,
+          }),
+        )}
+      />
       <PageHero
         eyebrow="Akademik"
         title="Wawasan Kurikulum & Program Akademik"

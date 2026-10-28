@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { WPPost } from '@/types/wordpress';
-import { extractFirstImage, stripHtml, formatIndonesianDate } from '@/lib/wordpress/extract';
+import { extractFirstImage, stripHtml, formatIndonesianDate, truncateText } from '@/lib/wordpress/extract';
 import GirihPattern from '@/components/ui/GirihPattern';
 import StarMark from '@/components/ui/StarMark';
 
@@ -14,8 +14,7 @@ interface NewsCardProps {
 }
 
 function buildExcerpt(post: WPPost): string {
-  const text = stripHtml(post.excerpt.rendered || post.content.rendered);
-  return text.length > EXCERPT_LENGTH ? `${text.slice(0, EXCERPT_LENGTH).trimEnd()}…` : text;
+  return truncateText(stripHtml(post.excerpt.rendered || post.content.rendered), EXCERPT_LENGTH);
 }
 
 /** Kartu berita dari WordPress. Seluruh area kartu dapat diklik melalui link judul. */

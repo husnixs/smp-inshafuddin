@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import JsonLd from '@/components/seo/JsonLd';
+import { breadcrumbSchema, graph } from '@/lib/seo/jsonld';
 
 export interface BreadcrumbItem {
   label: string;
@@ -10,7 +12,10 @@ interface BreadcrumbProps {
   tone?: 'light' | 'dark';
 }
 
-/** Breadcrumb dengan "Beranda" otomatis di awal; item terakhir menjadi halaman aktif. */
+/**
+ * Breadcrumb dengan "Beranda" otomatis di awal; item terakhir menjadi halaman aktif.
+ * Sekaligus menerbitkan JSON-LD BreadcrumbList dari data yang sama agar keduanya selalu sinkron.
+ */
 export default function Breadcrumb({ items, tone = 'light' }: BreadcrumbProps) {
   const trail: BreadcrumbItem[] = [{ label: 'Beranda', href: '/' }, ...items];
   const isDark = tone === 'dark';
@@ -20,8 +25,13 @@ export default function Breadcrumb({ items, tone = 'light' }: BreadcrumbProps) {
   const currentClass = isDark ? 'text-brand-gold-light' : 'text-brand-emerald';
   const separatorClass = isDark ? 'text-brand-gold/70' : 'text-brand-gold';
 
+  const structuredData = graph(
+    breadcrumbSchema(trail.map((item, index) => ({ name: item.label, path: index === trail.length - 1 ? undefined : item.href }))),
+  );
+
   return (
     <nav aria-label="Breadcrumb" className="text-xs sm:text-sm">
+      <JsonLd data={structuredData} />
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         {trail.map((item, index) => {
           const isLast = index === trail.length - 1;
