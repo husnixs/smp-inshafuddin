@@ -86,19 +86,22 @@ export default function MobileNav() {
 
               <nav className="mt-6 flex flex-col gap-2">
                 {siteConfig.navItems.map((item) => {
+                  const normalizedPath = pathname ? (pathname.endsWith('/') ? pathname : `${pathname}/`) : '/';
+                  const normalizedItem = item.href.endsWith('/') ? item.href : `${item.href}/`;
                   const isActive =
                     item.href === '/'
-                      ? pathname === '/'
-                      : pathname.startsWith(item.href);
+                      ? normalizedPath === '/'
+                      : normalizedPath === normalizedItem || (item.href === '/berita/' && normalizedPath.startsWith('/berita/'));
 
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`px-4 py-3 rounded-lg text-base font-medium transition-colors min-h-[44px] flex items-center ${
+                      aria-current={isActive ? 'page' : undefined}
+                      className={`px-4 py-3 rounded-lg text-base transition-colors min-h-[44px] flex items-center ${
                         isActive
-                          ? 'bg-surface-sage text-brand-emerald font-semibold border-l-4 border-brand-emerald'
-                          : 'text-ink-primary hover:bg-surface-ivory hover:text-brand-emerald'
+                          ? 'bg-surface-sage text-brand-emerald font-bold border-l-4 border-brand-emerald'
+                          : 'font-medium text-ink-primary hover:bg-surface-ivory hover:text-brand-emerald'
                       }`}
                     >
                       {item.label}
