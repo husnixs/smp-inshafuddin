@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import ButtonLink from '@/components/ui/ButtonLink';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import MihrabMark from '@/components/ui/MihrabMark';
 
 export const metadata: Metadata = {
   title: 'Halaman Tidak Ditemukan',
@@ -10,13 +9,12 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="relative isolate overflow-hidden bg-surface-ivory px-4 py-20 text-center lg:py-32">
-      <GirihPattern className="text-brand-emerald/[0.05]" />
-      <div className="relative mx-auto max-w-lg">
+    <section className="bg-surface-ivory px-4 py-20 text-center lg:py-32">
+      <div className="mx-auto max-w-lg">
         <p aria-hidden="true" className="font-display text-8xl font-semibold leading-none text-brand-gold/50 sm:text-9xl">
           404
         </p>
-        <StarMark className="mx-auto mt-6 h-5 w-5 text-brand-gold" />
+        <MihrabMark className="mx-auto mt-6 h-8 w-6 text-brand-gold" />
 
         <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight text-brand-emerald sm:text-4xl">
           Halaman tidak ditemukan

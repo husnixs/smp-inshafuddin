@@ -5,8 +5,7 @@ import { siteGraph, webPageSchema } from '@/lib/seo/jsonld';
 import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import ArchDivider from '@/components/ui/ArchDivider';
 
 export const revalidate = 3600;
 
@@ -74,7 +73,7 @@ export default function AkademikPage() {
         <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2 lg:gap-8 lg:px-8">
           <article className="card-surface p-8 sm:p-10">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
-              <StarMark className="h-3 w-3 text-brand-gold" />
+              <ArchDivider className="h-3 w-10 text-brand-gold" />
               Standar Nasional
             </p>
             <h2 className="mt-4 font-display text-2xl font-semibold text-brand-emerald sm:text-3xl">Kurikulum Nasional</h2>
@@ -85,11 +84,10 @@ export default function AkademikPage() {
             </p>
           </article>
 
-          <article className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-8 text-ink-on-dark shadow-lift sm:p-10">
-            <GirihPattern className="text-brand-gold/[0.14]" />
+          <article className="arch-top relative bg-brand-emerald px-8 pb-8 pt-14 text-ink-on-dark shadow-lift sm:px-10 sm:pb-10 sm:pt-16">
             <div className="relative">
               <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
-                <StarMark className="h-3 w-3 text-brand-gold" />
+                <ArchDivider className="h-3 w-10 text-brand-gold" />
                 Pesantren Terpadu
               </p>
               <h2 className="mt-4 font-display text-2xl font-semibold text-surface-white sm:text-3xl">

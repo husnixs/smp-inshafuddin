@@ -7,8 +7,8 @@ import { SCHOOL_ID, siteGraph, webPageSchema } from '@/lib/seo/jsonld';
 import JsonLd from '@/components/seo/JsonLd';
 import PageHero from '@/components/ui/PageHero';
 import SectionHeading from '@/components/ui/SectionHeading';
-import GirihPattern from '@/components/ui/GirihPattern';
-import StarMark from '@/components/ui/StarMark';
+import ArchDivider from '@/components/ui/ArchDivider';
+import MihrabFrame from '@/components/ui/MihrabFrame';
 
 export const revalidate = 3600; // 60 menit
 
@@ -108,11 +108,10 @@ export default async function TentangKamiPage() {
       {/* Visi & Misi */}
       <section aria-label="Visi dan misi sekolah" className="bg-surface-sand py-16 lg:py-24">
         <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-          <div className="relative isolate overflow-hidden rounded-hero bg-brand-emerald p-8 text-ink-on-dark shadow-lift sm:p-10 lg:col-span-5">
-            <GirihPattern className="text-brand-gold/[0.14]" />
+          <div className="arch-top relative bg-brand-emerald px-8 pb-8 pt-14 text-ink-on-dark shadow-lift sm:px-10 sm:pb-10 sm:pt-16 lg:col-span-5">
             <div className="relative flex h-full flex-col">
               <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-light">
-                <StarMark className="h-3 w-3 text-brand-gold" />
+                <ArchDivider className="h-3 w-10 text-brand-gold" />
                 Visi Sekolah
               </p>
               <span aria-hidden="true" className="mt-6 font-display text-7xl leading-none text-brand-gold">
@@ -130,7 +129,7 @@ export default async function TentangKamiPage() {
 
           <div className="card-surface p-8 sm:p-10 lg:col-span-7">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
-              <StarMark className="h-3 w-3 text-brand-gold" />
+              <ArchDivider className="h-3 w-10 text-brand-gold" />
               Misi Sekolah
             </p>
             <h2 className="mt-3 font-display text-2xl font-semibold text-brand-emerald sm:text-3xl">Delapan misi utama</h2>
@@ -158,7 +157,7 @@ export default async function TentangKamiPage() {
                 key={goal}
                 className="flex items-start gap-4 rounded-card border border-divider bg-surface-ivory p-5 text-sm leading-relaxed text-ink-primary sm:text-base"
               >
-                <StarMark className="mt-1 h-4 w-4 shrink-0 text-brand-gold" />
+                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
                 <span>{goal}</span>
               </li>
             ))}
@@ -181,8 +180,7 @@ export default async function TentangKamiPage() {
             {teachers.map((teacher) => (
               <li key={teacher.name} className="flex flex-col items-center text-center">
                 <div className="relative w-48 sm:w-full sm:max-w-[220px]">
-                  <div aria-hidden="true" className="frame-arch absolute -inset-2 border border-brand-gold/50" />
-                  <div className="frame-arch relative aspect-[3/4] w-full overflow-hidden bg-surface-sage shadow-card">
+                  <MihrabFrame outline className="aspect-[3/4] w-full">
                     <Image
                       src={teacher.image}
                       alt={teacher.name}
@@ -190,7 +188,7 @@ export default async function TentangKamiPage() {
                       sizes="(max-width: 640px) 192px, 220px"
                       className="object-cover object-top"
                     />
-                  </div>
+                  </MihrabFrame>
                 </div>
                 <h3 className="mt-6 font-display text-lg font-semibold text-brand-emerald">{teacher.name}</h3>
                 <p className="mt-1 text-sm text-ink-muted">{teacher.role}</p>

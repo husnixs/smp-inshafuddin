@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import StarMark from '@/components/ui/StarMark';
+import MihrabMark from '@/components/ui/MihrabMark';
 
 interface ErrorPageProps {
   error: Error & { digest?: string };
@@ -18,7 +18,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
   return (
     <section className="bg-surface-ivory px-4 py-20 text-center lg:py-32">
       <div className="mx-auto max-w-lg">
-        <StarMark className="mx-auto h-6 w-6 text-brand-gold" />
+        <MihrabMark className="mx-auto h-8 w-6 text-brand-gold" />
         <h1 className="mt-6 font-display text-3xl font-semibold tracking-tight text-brand-emerald sm:text-4xl">
           Halaman belum dapat dimuat
         </h1>

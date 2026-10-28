@@ -53,11 +53,6 @@ body {
   .arch-top-sm {
     border-radius: 9999px 9999px 4px 4px;
   }
-
-  /* Bingkai lengkung (mihrab) sederhana untuk foto potret */
-  .frame-arch {
-    border-radius: 999px 999px 16px 16px;
-  }
 }
 
 /* Konten HTML dari WordPress */
