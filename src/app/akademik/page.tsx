@@ -71,7 +71,7 @@ export default function AkademikPage() {
       {/* Landasan kurikulum */}
       <section aria-label="Landasan kurikulum" className="bg-surface-white py-16 lg:py-24">
         <div className="mx-auto grid max-w-content grid-cols-1 gap-6 px-4 sm:px-6 md:grid-cols-2 lg:gap-8 lg:px-8">
-          <article className="card-surface p-8 sm:p-10">
+          <article className="card-surface arch-top px-8 pb-8 pt-14 sm:px-10 sm:pb-10 sm:pt-16">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-gold-ink">
               <ArchDivider className="h-3 w-10 text-brand-gold" />
               Standar Nasional
