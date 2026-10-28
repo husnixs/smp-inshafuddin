@@ -5,12 +5,14 @@ interface ArcadeBandProps {
 }
 
 const ARCH_WIDTH = 28;
-const BAND_HEIGHT = 14;
+const BAND_HEIGHT = 15;
+/** Alas lengkung sedikit di atas tepi bawah agar goresan tidak terpotong tepi petak. */
+const BASELINE = 14.5;
 
 /** Pita deretan lengkung tipis (serambi) sebagai tepi atas footer. Warna mengikuti `currentColor`. */
 export default function ArcadeBand({ className = '' }: ArcadeBandProps) {
   const patternId = `arcade-${useId().replace(/[^a-zA-Z0-9_-]/g, '')}`;
-  const half = ARCH_WIDTH / 2;
+  const radius = ARCH_WIDTH / 2;
 
   return (
     <svg
@@ -22,7 +24,7 @@ export default function ArcadeBand({ className = '' }: ArcadeBandProps) {
       <defs>
         <pattern id={patternId} width={ARCH_WIDTH} height={BAND_HEIGHT} patternUnits="userSpaceOnUse">
           <path
-            d={`M0 ${BAND_HEIGHT}V${half}A${half} ${half} 0 0 1 ${ARCH_WIDTH} ${half}V${BAND_HEIGHT}`}
+            d={`M0 ${BASELINE}A${radius} ${radius} 0 0 1 ${ARCH_WIDTH} ${BASELINE}`}
             fill="none"
             stroke="currentColor"
             strokeWidth="1"

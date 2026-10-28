@@ -39,6 +39,7 @@ export default function MihrabFrame({ children, outline = false, outlineTone = '
           focusable="false"
           viewBox="0 0 1 1"
           preserveAspectRatio="none"
+          overflow="visible"
           className={`pointer-events-none absolute -inset-3 h-[calc(100%+1.5rem)] w-[calc(100%+1.5rem)] sm:-inset-4 sm:h-[calc(100%+2rem)] sm:w-[calc(100%+2rem)] ${OUTLINE_COLOR[outlineTone]}`}
         >
           <path d={MIHRAB_PATH} fill="none" stroke="currentColor" strokeWidth={1} vectorEffect="non-scaling-stroke" />

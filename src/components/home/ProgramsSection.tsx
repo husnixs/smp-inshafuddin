@@ -44,7 +44,7 @@ function ProgramPanel({ program }: { program: Program }) {
 
   return (
     <article
-      className={`relative isolate flex flex-col arch-top px-8 pb-8 pt-14 sm:px-10 sm:pb-10 sm:pt-16 ${
+      className={`relative isolate flex flex-col arch-top px-8 pb-8 pt-16 sm:px-10 sm:pb-10 ${
         isDark ? 'bg-brand-emerald text-ink-on-dark shadow-lift' : 'card-surface'
       }`}
     >

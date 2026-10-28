@@ -176,7 +176,7 @@ export default async function TentangKamiPage() {
             align="center"
           />
 
-          <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+          <ul className="mx-auto grid max-w-4xl grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-10 lg:gap-10">
             {teachers.map((teacher) => (
               <li key={teacher.name} className="flex flex-col items-center text-center">
                 <div className="relative w-48 sm:w-full sm:max-w-[220px]">
